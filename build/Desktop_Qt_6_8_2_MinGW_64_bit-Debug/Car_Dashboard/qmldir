@@ -1,0 +1,15 @@
+module Car_Dashboard
+typeinfo appCar_Dashboard.qmltypes
+prefer :/qt/qml/Car_Dashboard/
+Main 1.0 Main.qml
+WelcomeScreen 1.0 UI/WelcomePage/WelcomeScreen.qml
+MyButton 1.0 UI/WelcomePage/MyButton.qml
+WaitingScreen 1.0 UI/WelcomePage/WaitingScreen.qml
+StatusBar 1.0 UI/StatusBar/StatusBar.qml
+Information 1.0 UI/InformationPage/Information.qml
+WheelSpeed 1.0 UI/InformationPage/WheelSpeed.qml
+TemperatureIndicator 1.0 UI/InformationPage/TemperatureIndicator.qml
+SteeringWheel 1.0 UI/InformationPage/SteeringWheel.qml
+Speedometer 1.0 UI/InformationPage/Speedometer.qml
+RpmMeter 1.0 UI/InformationPage/RpmMeter.qml
+
