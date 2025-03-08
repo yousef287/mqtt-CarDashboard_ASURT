@@ -2,6 +2,9 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 
+
+// Main.qml
+
 Window {
     id: root
     width: 1400

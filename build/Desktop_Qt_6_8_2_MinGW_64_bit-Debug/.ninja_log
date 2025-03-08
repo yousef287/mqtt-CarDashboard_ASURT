@@ -204,3 +204,16 @@
 1000	2385	7631135392880755	CMakeFiles/appCar_Dashboard.dir/6bf3f5fe1b30acaceb627e303e7f99dd/.rcc/qmlcache/appCar_Dashboard_UI/InformationPage/Information_qml.cpp.obj	21c5d51ccf864b95
 1003	20991	7631135392910932	CMakeFiles/appCar_Dashboard.dir/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.qt/rcc/qrc_appCar_Dashboard_raw_qml_0.cpp.obj	82e831e6e050da3d
 20992	21818	7631135592801654	appCar_Dashboard.exe	129502c2062fe2cb
+88	162	7631512503129658	.qt/appCar_Dashboard_qml.txt	e84eb0a8d7ed0bda
+88	162	7631512503129658	C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.qt/appCar_Dashboard_qml.txt	e84eb0a8d7ed0bda
+99	470	7631512506146578	.qt/qml_imports/appCar_Dashboard_build.cmake	39e65b8b9802396c
+99	470	7631512506146578	C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.qt/qml_imports/appCar_Dashboard_build.cmake	39e65b8b9802396c
+470	587	7631512507326023	.rcc/qmlcache/appCar_Dashboard_Main_qml.cpp	eb7acf9f53a0ade2
+470	587	7631512507326023	.rcc/qmlcache/appCar_Dashboard_Main_qml.cpp.aotstats	eb7acf9f53a0ade2
+470	587	7631512507326023	C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.rcc/qmlcache/appCar_Dashboard_Main_qml.cpp	eb7acf9f53a0ade2
+470	587	7631512507326023	C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.rcc/qmlcache/appCar_Dashboard_Main_qml.cpp.aotstats	eb7acf9f53a0ade2
+476	1181	7631512513287846	.qt/rcc/qrc_appCar_Dashboard_raw_qml_0.cpp	c33178e0b7e3d85e
+476	1181	7631512513287846	C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.qt/rcc/qrc_appCar_Dashboard_raw_qml_0.cpp	c33178e0b7e3d85e
+1181	2932	7631512513382742	CMakeFiles/appCar_Dashboard.dir/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.rcc/qmlcache/appCar_Dashboard_Main_qml.cpp.obj	19ab6a38b0211d5f
+1184	21730	7631512513402809	CMakeFiles/appCar_Dashboard.dir/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.qt/rcc/qrc_appCar_Dashboard_raw_qml_0.cpp.obj	82e831e6e050da3d
+21730	23276	7631512718870556	appCar_Dashboard.exe	129502c2062fe2cb
