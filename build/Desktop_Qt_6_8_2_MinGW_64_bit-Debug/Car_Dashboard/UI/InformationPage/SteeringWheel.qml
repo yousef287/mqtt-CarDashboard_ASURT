@@ -9,7 +9,7 @@ Item {
     Text {
         anchors {
             bottom: steeringwheel.top
-            bottomMargin: -15
+            bottomMargin: -1
             horizontalCenter: parent.horizontalCenter
         }
         text: "Steering Angle: " + root.encoderAngle + "°"
