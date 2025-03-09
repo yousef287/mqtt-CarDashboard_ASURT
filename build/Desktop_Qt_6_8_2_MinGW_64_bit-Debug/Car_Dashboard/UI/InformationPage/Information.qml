@@ -68,7 +68,7 @@ Rectangle {
 
         Rectangle {
             id : proximityRect
-            width : parent.width - 40
+            width : parent.width - 30
             height : parent.height / 2
             color : "#636363"
             border.color: "turquoise"

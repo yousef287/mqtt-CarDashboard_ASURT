@@ -78,7 +78,7 @@ Rectangle {
                 id: marker
                 width: 20
                 height: 20
-                source: "UI/Assets/marker.png"
+                source: "../Assets/marker.png"
                 z : 2
             }
         }

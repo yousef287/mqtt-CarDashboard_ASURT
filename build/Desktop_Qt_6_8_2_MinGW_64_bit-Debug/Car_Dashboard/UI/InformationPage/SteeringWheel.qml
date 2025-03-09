@@ -9,7 +9,7 @@ Item {
     Text {
         anchors {
             bottom: steeringwheel.top
-            bottomMargin: -10
+            bottomMargin: -15
             horizontalCenter: parent.horizontalCenter
         }
         text: "Steering Angle: " + root.encoderAngle + "°"
@@ -25,8 +25,8 @@ Item {
         source: "../Assets/Steering_wheel.png"
         rotation: root.encoderAngle
         anchors.centerIn: parent
-        width: 220 * root.scaleFactor
-        height: 180 * root.scaleFactor
+        width: 190 * root.scaleFactor
+        height: 160 * root.scaleFactor
         fillMode: Image.PreserveAspectFit
         smooth: true
     }
