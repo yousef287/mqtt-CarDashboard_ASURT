@@ -24,7 +24,7 @@ Rectangle {
 
     Rectangle {
         id : leftRect
-        width : parent.width / 3
+        width : parent.width / 4
         height : parent.height - 20 * root.scaleFactor
         color : "#09122C"
         radius : 30
@@ -40,6 +40,119 @@ Rectangle {
             bottomMargin : 12
         }
 
+        Rectangle {
+            id: steeringWheelRect
+            width: parent.width - 40
+            height: parent.height / 3
+            color: "#636363"
+            border.color: "turquoise"
+            border.width: 2
+            radius: 20
+            anchors {
+                horizontalCenter : parent.horizontalCenter
+                top : parent.top
+                topMargin : 10
+
+            }
+            SteeringWheel {
+                id: steeringWheel
+                anchors.centerIn: parent
+            }
+        }
+
+
+        Rectangle {
+            id : proximityRect
+            width : parent.width - 40
+            height : parent.height / 2
+            color : "#636363"
+            border.color: "turquoise"
+            border.width: 2
+            radius: 20
+
+            anchors {
+                horizontalCenter : parent.horizontalCenter
+                top : steeringWheelRect.bottom
+                bottom : parent.bottom
+                topMargin : 10
+                bottomMargin : 10
+            }
+
+            Image {
+                id : car
+                source : "../Assets/AI_car_transparent.png"
+                anchors.centerIn : parent
+                height : parent.height - 30
+                fillMode : Image.PreserveAspectFit
+                smooth : true
+            }
+            WheelSpeed {
+                id: fl
+                wheelPos: "FL"
+                scaleFactor : 1.1
+                currentSpeed: udpClient.speedFL
+                anchors {
+                    top : car.top
+                    left : proximityRect.left
+                    topMargin : 70
+                    leftMargin : 20
+                }
+            }
+            WheelSpeed {
+                id: fr
+                wheelPos: "FR"
+                scaleFactor : 1.1
+                currentSpeed: udpClient.speedFR
+                anchors {
+                    top : car.top
+                    right : proximityRect.right
+                    topMargin : 70
+                    rightMargin : 20
+                }
+            }
+
+            WheelSpeed {
+                id: bl
+                wheelPos: "BL"
+                scaleFactor : 1.1
+                currentSpeed: udpClient.speedBL
+                anchors {
+                    bottom : car.bottom
+                    left : proximityRect.left
+                    bottomMargin : 70
+                    leftMargin : 20
+                }
+            }
+
+            WheelSpeed {
+                id: br
+                wheelPos: "BR"
+                scaleFactor : 1.1
+                currentSpeed: udpClient.speedBR
+                anchors {
+                    bottom : car.bottom
+                    right : proximityRect.right
+                    bottomMargin : 70
+                    rightMargin : 20
+                }
+            }
+
+            Connections {
+                  target: udpClient
+                  function onSpeedFRChanged() {
+                      fr.currentSpeed = udpClient.speedFR;
+                  }
+                  function onSpeedFLChanged() {
+                      fl.currentSpeed = udpClient.speedFL;
+                  }
+                  function onSpeedBRChanged() {
+                      br.currentSpeed = udpClient.speedBR;
+                  }
+                  function onSpeedBLChanged() {
+                      bl.currentSpeed = udpClient.speedBL;
+                  }
+            }
+        }
     }
 
     /*

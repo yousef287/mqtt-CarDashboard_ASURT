@@ -1,0 +1,198 @@
+import QtQuick 2.15
+import QtQuick.Controls
+import "../StatusBar"
+
+Rectangle {
+    id: root
+
+    property real scaleFactor : 1.0
+    property string sessionName: ""
+    property string portNumber: ""
+
+    color: "#1A3438"
+    anchors.fill: parent
+    radius: 40
+    border.color: "#A6F1E0"
+    border.width: 5
+
+    StatusBar {
+        id: statusBar
+        nameofsession : root.sessionName
+        nameOfport : root.portNumber
+    }
+
+
+    Rectangle {
+        id : leftRect
+        width : parent.width / 4
+        height : parent.height - 20 * root.scaleFactor
+        color : "#09122C"
+        radius : 30
+        border.width : 2
+        border.color : "#D84040"
+
+        anchors {
+            top : statusBar.bottom
+            left: parent.left
+            bottom : parent.bottom
+            leftMargin : 12
+            topMargin : 5
+            bottomMargin : 12
+        }
+
+        Rectangle {
+            id: steeringWheelRect
+            width: parent.width - 40
+            height: parent.height / 3
+            color: "#636363"
+            border.color: "turquoise"
+            border.width: 2
+            radius: 20
+            anchors {
+                horizontalCenter : parent.horizontalCenter
+                top : parent.top
+                topMargin : 10
+
+            }
+            SteeringWheel {
+                id: steeringWheel
+                anchors.centerIn: parent
+            }
+        }
+
+
+        Rectangle {
+            id : proximityRect
+            width : parent.width - 40
+            height : parent.height / 2
+            color : "#636363"
+            border.color: "turquoise"
+            border.width: 2
+            radius: 20
+
+            anchors {
+                horizontalCenter : parent.horizontalCenter
+                top : steeringWheelRect.bottom
+                bottom : parent.bottom
+                topMargin : 10
+                bottomMargin : 10
+            }
+
+            Image {
+                id : car
+                source : "../Assets/AI_car_transparent.png"
+                anchors.centerIn : parent
+                height : parent.height - 30
+                fillMode : Image.PreserveAspectFit
+                smooth : true
+            }
+            WheelSpeed {
+                id: fl
+                wheelPos: "FL"
+                scaleFactor : 1.1
+                currentSpeed: udpClient.speedFL
+                anchors {
+                    top : car.top
+                    left : proximityRect.left
+                    topMargin : 70
+                    leftMargin : 20
+                }
+            }
+            WheelSpeed {
+                id: fr
+                wheelPos: "FR"
+                scaleFactor : 1.1
+                currentSpeed: udpClient.speedFR
+                anchors {
+                    top : car.top
+                    right : proximityRect.right
+                    topMargin : 70
+                    rightMargin : 20
+                }
+            }
+
+            WheelSpeed {
+                id: bl
+                wheelPos: "BL"
+                scaleFactor : 1.1
+                currentSpeed: udpClient.speedBL
+                anchors {
+                    bottom : car.bottom
+                    left : proximityRect.left
+                    bottomMargin : 70
+                    leftMargin : 20
+                }
+            }
+
+            WheelSpeed {
+                id: br
+                wheelPos: "BR"
+                scaleFactor : 1.1
+                currentSpeed: udpClient.speedBR
+                anchors {
+                    bottom : car.bottom
+                    right : proximityRect.right
+                    bottomMargin : 70
+                    rightMargin : 20
+                }
+            }
+
+            Connections {
+                  target: udpClient
+                  function onSpeedFRChanged() {
+                      fr.currentSpeed = udpClient.speedFR;
+                  }
+                  function onSpeedFLChanged() {
+                      fl.currentSpeed = udpClient.speedFL;
+                  }
+                  function onSpeedBRChanged() {
+                      br.currentSpeed = udpClient.speedBR;
+                  }
+                  function onSpeedBLChanged() {
+                      bl.currentSpeed = udpClient.speedBL;
+                  }
+            }
+        }
+    }
+
+    /*
+    // Meters section for speedometer and RPM meter
+    Rectangle {
+        id: metersScreen
+        width: speedometer.width + rpmMeter.width - 45
+        height: 300
+        color: "#09122C"
+        border.color: "black"
+        border.width: 2
+        anchors.top: statusBar.bottom
+        anchors.topMargin: 8
+        anchors.horizontalCenter: parent.horizontalCenter
+        radius: 20
+
+        Speedometer {
+            id: speedometer
+            speed: udpClient.speed
+            anchors {
+                left: parent.left
+                leftMargin: -20
+                verticalCenter: parent.verticalCenter
+                top: parent.top
+            }
+        }
+
+        RpmMeter {
+            id: rpmMeter
+            rpm: udpClient.rpm
+            anchors {
+                left: speedometer.right
+                right: parent.right
+                rightMargin: 30
+                verticalCenter: parent.verticalCenter
+            }
+        }
+    }
+
+
+
+}
+

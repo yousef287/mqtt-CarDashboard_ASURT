@@ -25,8 +25,8 @@ Item {
         source: "../Assets/Steering_wheel.png"
         rotation: root.encoderAngle
         anchors.centerIn: parent
-        width: 200 * root.scaleFactor
-        height: 200 * root.scaleFactor
+        width: 220 * root.scaleFactor
+        height: 180 * root.scaleFactor
         fillMode: Image.PreserveAspectFit
         smooth: true
     }

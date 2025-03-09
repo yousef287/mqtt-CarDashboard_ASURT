@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 19,
-                        "durationMicroseconds": 219,
+                        "durationMicroseconds": 180,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 15
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 22,
-                        "durationMicroseconds": 63,
+                        "durationMicroseconds": 60,
                         "errorMessage": "Cannot access value for name stackView",
                         "functionName": "onTriggered",
                         "line": 26
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 24,
-                        "durationMicroseconds": 145,
+                        "durationMicroseconds": 135,
                         "errorMessage": "",
                         "functionName": "pixelSize",
                         "line": 40
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 31,
-                        "durationMicroseconds": 106,
+                        "durationMicroseconds": 133,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 43
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 25,
-                        "durationMicroseconds": 63,
+                        "durationMicroseconds": 70,
                         "errorMessage": "",
                         "functionName": "nameofsession",
                         "line": 59
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 22,
-                        "durationMicroseconds": 68,
+                        "durationMicroseconds": 63,
                         "errorMessage": "",
                         "functionName": "nameOfport",
                         "line": 60
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 20,
-                        "durationMicroseconds": 178,
+                        "durationMicroseconds": 193,
                         "errorMessage": "Cannot access value for name udpClient",
                         "functionName": "onClicked",
                         "line": 75
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 19,
-                        "durationMicroseconds": 98,
+                        "durationMicroseconds": 110,
                         "errorMessage": "",
                         "functionName": "left",
                         "line": 70
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 21,
-                        "durationMicroseconds": 90,
+                        "durationMicroseconds": 97,
                         "errorMessage": "",
                         "functionName": "bottom",
                         "line": 72
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 31,
-                        "durationMicroseconds": 91,
+                        "durationMicroseconds": 98,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 94
@@ -102,7 +102,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 18,
-                        "durationMicroseconds": 86,
+                        "durationMicroseconds": 95,
                         "errorMessage": "",
                         "functionName": "top",
                         "line": 95
