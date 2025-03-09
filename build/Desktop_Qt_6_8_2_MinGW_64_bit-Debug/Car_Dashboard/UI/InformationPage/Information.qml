@@ -156,7 +156,9 @@ Rectangle {
     }
 
 
-    // Meters section for speedometer and RPM meter
+
+    /******** Meters Screen *******/
+
     Rectangle {
         id: metersScreen
         width: speedometer.width + rpmMeter.width - 45
@@ -197,6 +199,24 @@ Rectangle {
         }
     }
 
+    Rectangle {
+        id : pedalTempRect
+        width : parent.width / 5.5
+        height : parent.height / 4
+
+        color: "#09122C"
+        border.color: "#D84040"
+        border.width: 2
+        radius : 20
+
+        anchors {
+
+        }
+    }
+
+
+
+    /*********** Right Rect (GPS) **********/
 
     Rectangle {
         id : rightRect
