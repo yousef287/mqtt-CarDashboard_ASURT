@@ -160,6 +160,8 @@ Rectangle {
         }
     }
 
+    /********************************************************/
+
 
 
 
@@ -176,8 +178,8 @@ Rectangle {
         anchors {
             top : statusBar.bottom
             topMargin: 8
-            left : parent.left
-            leftMargin : proximityRect.width + 110
+            left : leftRect.right
+            leftMargin : 70
 
         }
 
@@ -206,10 +208,13 @@ Rectangle {
         }
     }
 
+
+    /******** Battery , Accelator , Braker Pedal Readings *************/
+
     Rectangle {
         id : pedalTempRect
-        width : parent.width / 5.5
-        height : parent.height / 4
+        width : parent.width / 5.1
+        height : parent.height / 3.5
 
         color: "#09122C"
         border.color: "#D84040"
@@ -219,10 +224,55 @@ Rectangle {
         anchors {
             top : metersScreen.bottom
             topMargin : 65
-            left : parent.left
-            leftMargin : proximityRect.width + 70
+            left : leftRect.right
+            leftMargin : 30
+        }
+
+        AcceleratorPedal {
+            id: acceleratorPedal
+            pedalPosition: udpClient.accPedal
+            anchors {
+                bottom: parent.bottom
+                left: parent.left
+                margins: 10
+            }
+        }
+
+        BrakePadel {
+            id: brakePedal
+            pedalPosition: udpClient.brakePedal
+            anchors {
+                bottom: parent.bottom
+                left: acceleratorPedal.right
+                margins: 10
+            }
+        }
+
+        TemperatureIndicator {
+            id: temperatureIndicator
+            anchors {
+                top: parent.top
+                left: parent.left
+                leftMargin: 10
+                topMargin: 20
+            }
+        }
+
+        BatteryLevelIndicator {
+            id: batteryLevelIndicator
+            scaleFactor: parent.height / 190
+            anchors {
+                right: parent.right
+                top: parent.top
+                rightMargin: 80
+                topMargin: 60
+            }
         }
     }
+
+
+    /********************************************************/
+
 
 
 
@@ -275,6 +325,8 @@ Rectangle {
         }
 
     }
+    /********************************************************/
+
 
 }
 
