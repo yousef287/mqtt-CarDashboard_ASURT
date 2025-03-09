@@ -15,12 +15,17 @@ Rectangle {
     border.color: "#A6F1E0"
     border.width: 5
 
+    /******* Status Bar *********/
+
     StatusBar {
         id: statusBar
         nameofsession : root.sessionName
         nameOfport : root.portNumber
     }
 
+
+
+    /************  Steering Wheel and Proximity Sener ************/
 
     Rectangle {
         id : leftRect
@@ -157,6 +162,7 @@ Rectangle {
 
 
 
+
     /******** Meters Screen *******/
 
     Rectangle {
@@ -172,6 +178,7 @@ Rectangle {
             topMargin: 8
             left : parent.left
             leftMargin : proximityRect.width + 110
+
         }
 
         radius: 20
@@ -210,7 +217,10 @@ Rectangle {
         radius : 20
 
         anchors {
-
+            top : metersScreen.bottom
+            topMargin : 65
+            left : parent.left
+            leftMargin : proximityRect.width + 70
         }
     }
 

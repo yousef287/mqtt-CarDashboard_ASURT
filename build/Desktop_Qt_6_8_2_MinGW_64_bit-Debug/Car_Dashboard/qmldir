@@ -13,4 +13,6 @@ SteeringWheel 1.0 UI/InformationPage/SteeringWheel.qml
 Speedometer 1.0 UI/InformationPage/Speedometer.qml
 RpmMeter 1.0 UI/InformationPage/RpmMeter.qml
 GpsPlotter 1.0 UI/InformationPage/GpsPlotter.qml
+AcceleratorPedal 1.0 UI/InformationPage/AcceleratorPedal.qml
+BrakePadel 1.0 UI/InformationPage/BrakePadel.qml
 
