@@ -12,4 +12,5 @@ TemperatureIndicator 1.0 UI/InformationPage/TemperatureIndicator.qml
 SteeringWheel 1.0 UI/InformationPage/SteeringWheel.qml
 Speedometer 1.0 UI/InformationPage/Speedometer.qml
 RpmMeter 1.0 UI/InformationPage/RpmMeter.qml
+GpsPlotter 1.0 UI/InformationPage/GpsPlotter.qml
 

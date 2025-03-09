@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 14,
-                        "durationMicroseconds": 1750,
+                        "durationMicroseconds": 540,
                         "errorMessage": "",
                         "functionName": "opacity",
                         "line": 9
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 20,
-                        "durationMicroseconds": 285,
+                        "durationMicroseconds": 167,
                         "errorMessage": "",
                         "functionName": "onClicked",
                         "line": 15
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 20,
-                        "durationMicroseconds": 42,
+                        "durationMicroseconds": 30,
                         "errorMessage": "Cannot retrieve a non-object type by ID: toolTip",
                         "functionName": "onEntered",
                         "line": 18
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 19,
-                        "durationMicroseconds": 25,
+                        "durationMicroseconds": 20,
                         "errorMessage": "Cannot retrieve a non-object type by ID: toolTip",
                         "functionName": "onExited",
                         "line": 19
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 23,
-                        "durationMicroseconds": 97,
+                        "durationMicroseconds": 73,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 14
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 15,
-                        "durationMicroseconds": 3,
+                        "durationMicroseconds": 2,
                         "errorMessage": "Cannot resolve property type  for binding on text.",
                         "functionName": "text",
                         "line": 24

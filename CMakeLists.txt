@@ -39,6 +39,7 @@ qt_add_qml_module(appCar_Dashboard
         RESOURCES UI/Assets/Steering_wheel.png
         QML_FILES UI/InformationPage/Speedometer.qml
         QML_FILES UI/InformationPage/RpmMeter.qml
+        QML_FILES UI/InformationPage/GpsPlotter.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

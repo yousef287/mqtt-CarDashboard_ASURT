@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 19,
-                        "durationMicroseconds": 180,
+                        "durationMicroseconds": 257,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 15
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 22,
-                        "durationMicroseconds": 60,
+                        "durationMicroseconds": 90,
                         "errorMessage": "Cannot access value for name stackView",
                         "functionName": "onTriggered",
                         "line": 26
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 24,
-                        "durationMicroseconds": 135,
+                        "durationMicroseconds": 192,
                         "errorMessage": "",
                         "functionName": "pixelSize",
                         "line": 40
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 31,
-                        "durationMicroseconds": 133,
+                        "durationMicroseconds": 141,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 43
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 21,
-                        "durationMicroseconds": 16,
+                        "durationMicroseconds": 28,
                         "errorMessage": "Cannot retrieve a non-object type by ID: busyIndicator",
                         "functionName": "bottom",
                         "line": 44
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 27,
-                        "durationMicroseconds": 1,
+                        "durationMicroseconds": 2,
                         "errorMessage": "Cannot resolve property type  for binding on centerIn.",
                         "functionName": "centerIn",
                         "line": 52
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 25,
-                        "durationMicroseconds": 70,
+                        "durationMicroseconds": 85,
                         "errorMessage": "",
                         "functionName": "nameofsession",
                         "line": 59
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 22,
-                        "durationMicroseconds": 63,
+                        "durationMicroseconds": 295,
                         "errorMessage": "",
                         "functionName": "nameOfport",
                         "line": 60
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 20,
-                        "durationMicroseconds": 193,
+                        "durationMicroseconds": 266,
                         "errorMessage": "Cannot access value for name udpClient",
                         "functionName": "onClicked",
                         "line": 75
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 19,
-                        "durationMicroseconds": 110,
+                        "durationMicroseconds": 139,
                         "errorMessage": "",
                         "functionName": "left",
                         "line": 70
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 21,
-                        "durationMicroseconds": 97,
+                        "durationMicroseconds": 120,
                         "errorMessage": "",
                         "functionName": "bottom",
                         "line": 72
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 31,
-                        "durationMicroseconds": 98,
+                        "durationMicroseconds": 121,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 94
@@ -102,7 +102,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 18,
-                        "durationMicroseconds": 95,
+                        "durationMicroseconds": 119,
                         "errorMessage": "",
                         "functionName": "top",
                         "line": 95

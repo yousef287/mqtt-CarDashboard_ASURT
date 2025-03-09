@@ -155,18 +155,23 @@ Rectangle {
         }
     }
 
-    /*
+
     // Meters section for speedometer and RPM meter
     Rectangle {
         id: metersScreen
         width: speedometer.width + rpmMeter.width - 45
         height: 300
         color: "#09122C"
-        border.color: "black"
+        border.color: "#D84040"
         border.width: 2
-        anchors.top: statusBar.bottom
-        anchors.topMargin: 8
-        anchors.horizontalCenter: parent.horizontalCenter
+
+        anchors {
+            top : statusBar.bottom
+            topMargin: 8
+            left : parent.left
+            leftMargin : proximityRect.width + 110
+        }
+
         radius: 20
 
         Speedometer {
@@ -192,26 +197,54 @@ Rectangle {
         }
     }
 
-    // Steering wheel section
+
     Rectangle {
-        id: steeringWheelRect
-        width: 200
-        height: 250
-        color: "#09122C"
-        border.color: "black"
-        border.width: 2
-        radius: 20
+        id : rightRect
+        width : parent.width / 4
+        height : parent.height - 20 * root.scaleFactor
+        color : "#09122C"
+        radius : 30
+        border.width : 2
+        border.color : "#D84040"
+
         anchors {
-            top: statusBar.bottom
-            left: parent.left
-            margins: 5
+            top : statusBar.bottom
+            right: parent.right
+            bottom : parent.bottom
+            rightMargin : 12
+            topMargin : 5
+            bottomMargin : 12
         }
-        SteeringWheel {
-            id: steeringWheel
-            anchors.centerIn: parent
+
+        Text {
+            id : gpsText
+            text : "GPS"
+            color : "turquoise"
+            font {
+                pixelSize: 20
+                family: "DS-Digital"
+            }
+
+            anchors {
+                top : parent.top
+                horizontalCenter : parent.horizontalCenter
+                topMargin : 5
+            }
         }
+
+        GpsPlotter {
+            id : gps
+            anchors {
+                horizontalCenter : parent.horizontalCenter
+                top : parent.top
+                bottom : parent.bottom
+                topMargin : 30
+                bottomMargin : 10
+
+            }
+        }
+
     }
-    */
 
 }
 

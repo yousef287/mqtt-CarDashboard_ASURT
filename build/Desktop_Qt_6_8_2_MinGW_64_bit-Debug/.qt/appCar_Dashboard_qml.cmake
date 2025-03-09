@@ -24,6 +24,8 @@ set(src_and_dest_list
     "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/Car_Dashboard/UI/InformationPage/Speedometer.qml"
     "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/UI/InformationPage/RpmMeter.qml"
     "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/Car_Dashboard/UI/InformationPage/RpmMeter.qml"
+    "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/UI/InformationPage/GpsPlotter.qml"
+    "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/Car_Dashboard/UI/InformationPage/GpsPlotter.qml"
 
 )
 set(timestamp_file "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.qt/appCar_Dashboard_qml.txt")

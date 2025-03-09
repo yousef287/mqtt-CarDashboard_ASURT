@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 19,
-                        "durationMicroseconds": 316,
+                        "durationMicroseconds": 371,
                         "errorMessage": "",
                         "functionName": "fillMode",
                         "line": 11
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 15,
-                        "durationMicroseconds": 657,
+                        "durationMicroseconds": 1031,
                         "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
                         "functionName": "text",
                         "line": 17
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 21,
-                        "durationMicroseconds": 199,
+                        "durationMicroseconds": 231,
                         "errorMessage": "",
                         "functionName": "bottom",
                         "line": 25
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 31,
-                        "durationMicroseconds": 184,
+                        "durationMicroseconds": 226,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 26
