@@ -6,10 +6,10 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 24,
-                        "durationMicroseconds": 52,
+                        "durationMicroseconds": 43,
                         "errorMessage": "Cannot resolve property type  for binding on fill.",
                         "functionName": "fill",
-                        "line": 19
+                        "line": 18
                     }
                 ],
                 "filepath": "Main.qml"

@@ -3,7 +3,6 @@ import QtQuick.Window
 import QtQuick.Controls
 
 
-// Main.qml
 
 Window {
     id: root

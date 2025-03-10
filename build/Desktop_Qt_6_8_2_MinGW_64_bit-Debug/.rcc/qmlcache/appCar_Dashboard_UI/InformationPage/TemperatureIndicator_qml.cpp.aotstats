@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 19,
-                        "durationMicroseconds": 371,
+                        "durationMicroseconds": 295,
                         "errorMessage": "",
                         "functionName": "fillMode",
                         "line": 11
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 15,
-                        "durationMicroseconds": 1031,
+                        "durationMicroseconds": 690,
                         "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
                         "functionName": "text",
                         "line": 17
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 21,
-                        "durationMicroseconds": 231,
+                        "durationMicroseconds": 206,
                         "errorMessage": "",
                         "functionName": "bottom",
                         "line": 25
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 31,
-                        "durationMicroseconds": 226,
+                        "durationMicroseconds": 158,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 26
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 17,
-                        "durationMicroseconds": 91,
+                        "durationMicroseconds": 88,
                         "errorMessage": "Cannot access value for name udpClient",
                         "functionName": "target",
                         "line": 32

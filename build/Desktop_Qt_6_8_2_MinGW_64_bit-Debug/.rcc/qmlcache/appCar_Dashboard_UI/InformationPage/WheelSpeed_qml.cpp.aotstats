@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 5,
-                        "durationMicroseconds": 109,
+                        "durationMicroseconds": 91,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "getColorForSpeed",
                         "line": 49
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 16,
-                        "durationMicroseconds": 622,
+                        "durationMicroseconds": 468,
                         "errorMessage": "",
                         "functionName": "width",
                         "line": 18
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 17,
-                        "durationMicroseconds": 173,
+                        "durationMicroseconds": 202,
                         "errorMessage": "Cannot load property currentSpeed from (component in WheelSpeed.qml)::parent with type QQuickItem.",
                         "functionName": "height",
                         "line": 19
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 16,
-                        "durationMicroseconds": 687,
+                        "durationMicroseconds": 728,
                         "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
                         "functionName": "color",
                         "line": 21
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 25,
-                        "durationMicroseconds": 230,
+                        "durationMicroseconds": 192,
                         "errorMessage": "",
                         "functionName": "bottom",
                         "line": 23
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 35,
-                        "durationMicroseconds": 210,
+                        "durationMicroseconds": 176,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 24
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 15,
-                        "durationMicroseconds": 307,
+                        "durationMicroseconds": 195,
                         "errorMessage": "",
                         "functionName": "text",
                         "line": 29
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 35,
-                        "durationMicroseconds": 230,
+                        "durationMicroseconds": 154,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 30
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 25,
-                        "durationMicroseconds": 199,
+                        "durationMicroseconds": 1188,
                         "errorMessage": "",
                         "functionName": "bottom",
                         "line": 31
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 25,
-                        "durationMicroseconds": 233,
+                        "durationMicroseconds": 236,
                         "errorMessage": "",
                         "functionName": "pixelSize",
                         "line": 32
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 15,
-                        "durationMicroseconds": 119,
+                        "durationMicroseconds": 141,
                         "errorMessage": "Cannot load property currentSpeed from (component in WheelSpeed.qml)::parent with type QQuickItem.",
                         "functionName": "text",
                         "line": 38
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 16,
-                        "durationMicroseconds": 496,
+                        "durationMicroseconds": 560,
                         "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
                         "functionName": "color",
                         "line": 43
@@ -102,7 +102,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 35,
-                        "durationMicroseconds": 231,
+                        "durationMicroseconds": 189,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 39
@@ -110,7 +110,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 25,
-                        "durationMicroseconds": 195,
+                        "durationMicroseconds": 285,
                         "errorMessage": "",
                         "functionName": "bottom",
                         "line": 40
@@ -118,7 +118,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 25,
-                        "durationMicroseconds": 222,
+                        "durationMicroseconds": 196,
                         "errorMessage": "",
                         "functionName": "pixelSize",
                         "line": 41

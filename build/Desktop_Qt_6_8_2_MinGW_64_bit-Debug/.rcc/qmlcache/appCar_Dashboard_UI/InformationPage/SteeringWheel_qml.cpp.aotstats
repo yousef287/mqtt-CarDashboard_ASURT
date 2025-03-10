@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 35,
-                        "durationMicroseconds": 443,
+                        "durationMicroseconds": 167,
                         "errorMessage": "Cannot access value for name udpClient",
                         "functionName": "encoderAngle",
                         "line": 5
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 15,
-                        "durationMicroseconds": 632,
+                        "durationMicroseconds": 301,
                         "errorMessage": "",
                         "functionName": "text",
                         "line": 15
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 21,
-                        "durationMicroseconds": 227,
+                        "durationMicroseconds": 114,
                         "errorMessage": "",
                         "functionName": "bottom",
                         "line": 11
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 31,
-                        "durationMicroseconds": 203,
+                        "durationMicroseconds": 103,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 13
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 24,
-                        "durationMicroseconds": 223,
+                        "durationMicroseconds": 138,
                         "errorMessage": "",
                         "functionName": "pixelSize",
                         "line": 17
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 19,
-                        "durationMicroseconds": 265,
+                        "durationMicroseconds": 55,
                         "errorMessage": "",
                         "functionName": "rotation",
                         "line": 26
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 16,
-                        "durationMicroseconds": 522,
+                        "durationMicroseconds": 93,
                         "errorMessage": "",
                         "functionName": "width",
                         "line": 28
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 17,
-                        "durationMicroseconds": 209,
+                        "durationMicroseconds": 85,
                         "errorMessage": "",
                         "functionName": "height",
                         "line": 29
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 19,
-                        "durationMicroseconds": 138,
+                        "durationMicroseconds": 60,
                         "errorMessage": "",
                         "functionName": "fillMode",
                         "line": 30
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 27,
-                        "durationMicroseconds": 88,
+                        "durationMicroseconds": 39,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 27
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 17,
-                        "durationMicroseconds": 90,
+                        "durationMicroseconds": 30,
                         "errorMessage": "Cannot access value for name udpClient",
                         "functionName": "target",
                         "line": 35
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 32,
-                        "durationMicroseconds": 6,
+                        "durationMicroseconds": 3,
                         "errorMessage": "Cannot resolve property type  for binding on onEncoderAngleChanged.",
                         "functionName": "onEncoderAngleChanged",
                         "line": 36

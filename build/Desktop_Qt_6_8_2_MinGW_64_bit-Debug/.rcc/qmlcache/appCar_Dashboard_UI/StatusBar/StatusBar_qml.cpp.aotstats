@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 15,
-                        "durationMicroseconds": 374,
+                        "durationMicroseconds": 379,
                         "errorMessage": "",
                         "functionName": "top",
                         "line": 16
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 28,
-                        "durationMicroseconds": 140,
+                        "durationMicroseconds": 165,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 17
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 15,
-                        "durationMicroseconds": 3323,
+                        "durationMicroseconds": 1147,
                         "errorMessage": "",
                         "functionName": "text",
                         "line": 24
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 28,
-                        "durationMicroseconds": 142,
+                        "durationMicroseconds": 121,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 29
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 16,
-                        "durationMicroseconds": 251,
+                        "durationMicroseconds": 202,
                         "errorMessage": "",
                         "functionName": "text",
                         "line": 34
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 30,
-                        "durationMicroseconds": 223,
+                        "durationMicroseconds": 193,
                         "errorMessage": "",
                         "functionName": "verticalCenter",
                         "line": 41
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 20,
-                        "durationMicroseconds": 194,
+                        "durationMicroseconds": 163,
                         "errorMessage": "",
                         "functionName": "left",
                         "line": 42
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 16,
-                        "durationMicroseconds": 314,
+                        "durationMicroseconds": 245,
                         "errorMessage": "",
                         "functionName": "text",
                         "line": 49
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 30,
-                        "durationMicroseconds": 195,
+                        "durationMicroseconds": 225,
                         "errorMessage": "",
                         "functionName": "verticalCenter",
                         "line": 56
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 21,
-                        "durationMicroseconds": 185,
+                        "durationMicroseconds": 167,
                         "errorMessage": "",
                         "functionName": "right",
                         "line": 57
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 22,
-                        "durationMicroseconds": 708,
+                        "durationMicroseconds": 548,
                         "errorMessage": "",
                         "functionName": "onTriggered",
                         "line": 66

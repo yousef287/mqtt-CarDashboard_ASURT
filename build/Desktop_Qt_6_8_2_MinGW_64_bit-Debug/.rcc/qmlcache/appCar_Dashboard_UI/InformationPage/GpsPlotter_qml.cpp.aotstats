@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 12,
-                        "durationMicroseconds": 390,
+                        "durationMicroseconds": 357,
                         "errorMessage": "",
                         "functionName": "width",
                         "line": 8
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 13,
-                        "durationMicroseconds": 129,
+                        "durationMicroseconds": 139,
                         "errorMessage": "",
                         "functionName": "height",
                         "line": 9
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 37,
-                        "durationMicroseconds": 48,
+                        "durationMicroseconds": 47,
                         "errorMessage": "",
                         "functionName": "currentLongitude",
                         "line": 14
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 36,
-                        "durationMicroseconds": 43,
+                        "durationMicroseconds": 48,
                         "errorMessage": "",
                         "functionName": "currentLatitude",
                         "line": 15
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 35,
-                        "durationMicroseconds": 592,
+                        "durationMicroseconds": 62,
                         "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
                         "functionName": "pathCoordinates",
                         "line": 18
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 5,
-                        "durationMicroseconds": 267,
+                        "durationMicroseconds": 12,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "isValidCoordinate",
                         "line": 22
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 5,
-                        "durationMicroseconds": 10,
+                        "durationMicroseconds": 9,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "updatePath",
                         "line": 29
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 17,
-                        "durationMicroseconds": 580,
+                        "durationMicroseconds": 220,
                         "errorMessage": "",
                         "functionName": "center",
                         "line": 49
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 23,
-                        "durationMicroseconds": 61,
+                        "durationMicroseconds": 49,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 47
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 19,
-                        "durationMicroseconds": 431,
+                        "durationMicroseconds": 110,
                         "errorMessage": "Cannot generate efficient code for internal conversion with incompatible or ambiguous types: (component in GpsPlotter.qml)::pathCoordinates with type QVariant -> QList<QGeoCoordinate> stored as QVariant",
                         "functionName": "path",
                         "line": 69
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 25,
-                        "durationMicroseconds": 319,
+                        "durationMicroseconds": 297,
                         "errorMessage": "",
                         "functionName": "coordinate",
                         "line": 74
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 28,
-                        "durationMicroseconds": 122,
+                        "durationMicroseconds": 128,
                         "errorMessage": "",
                         "functionName": "x",
                         "line": 75
@@ -110,7 +110,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 22,
-                        "durationMicroseconds": 96,
+                        "durationMicroseconds": 100,
                         "errorMessage": "",
                         "functionName": "top",
                         "line": 89
@@ -118,7 +118,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 24,
-                        "durationMicroseconds": 95,
+                        "durationMicroseconds": 98,
                         "errorMessage": "",
                         "functionName": "right",
                         "line": 90
@@ -126,7 +126,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 24,
-                        "durationMicroseconds": 6,
+                        "durationMicroseconds": 7,
                         "errorMessage": "Cannot resolve property type  for binding on onClicked.",
                         "functionName": "onClicked",
                         "line": 97
@@ -134,7 +134,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 24,
-                        "durationMicroseconds": 4,
+                        "durationMicroseconds": 6,
                         "errorMessage": "Cannot resolve property type  for binding on onClicked.",
                         "functionName": "onClicked",
                         "line": 103
@@ -142,7 +142,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 24,
-                        "durationMicroseconds": 2,
+                        "durationMicroseconds": 3,
                         "errorMessage": "Cannot resolve property type  for binding on onClicked.",
                         "functionName": "onClicked",
                         "line": 109
@@ -150,7 +150,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 54,
-                        "durationMicroseconds": 74,
+                        "durationMicroseconds": 68,
                         "errorMessage": "",
                         "functionName": "type",
                         "line": 118
@@ -158,7 +158,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 54,
-                        "durationMicroseconds": 53,
+                        "durationMicroseconds": 68,
                         "errorMessage": "",
                         "functionName": "type",
                         "line": 121
@@ -166,7 +166,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 17,
-                        "durationMicroseconds": 46,
+                        "durationMicroseconds": 52,
                         "errorMessage": "Cannot access value for name udpClient",
                         "functionName": "target",
                         "line": 125
@@ -174,7 +174,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 9,
-                        "durationMicroseconds": 297,
+                        "durationMicroseconds": 461,
                         "errorMessage": "Cannot access value for name udpClient",
                         "functionName": "onGpsLongitudeChanged",
                         "line": 126

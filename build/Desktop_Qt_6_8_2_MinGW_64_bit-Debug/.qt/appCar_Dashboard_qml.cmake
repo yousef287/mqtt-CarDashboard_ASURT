@@ -30,6 +30,8 @@ set(src_and_dest_list
     "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/Car_Dashboard/UI/InformationPage/AcceleratorPedal.qml"
     "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/UI/InformationPage/BrakePadel.qml"
     "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/Car_Dashboard/UI/InformationPage/BrakePadel.qml"
+    "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/UI/InformationPage/BatteryLevelIndicator.qml"
+    "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/Car_Dashboard/UI/InformationPage/BatteryLevelIndicator.qml"
 
 )
 set(timestamp_file "C:/Users/Mohamed/OneDrive/Documents/QtProjects/Car_Dashboard/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.qt/appCar_Dashboard_qml.txt")

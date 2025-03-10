@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 19,
-                        "durationMicroseconds": 503,
+                        "durationMicroseconds": 474,
                         "errorMessage": "",
                         "functionName": "onRpmChanged",
                         "line": 17
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 5,
-                        "durationMicroseconds": 48,
+                        "durationMicroseconds": 42,
                         "errorMessage": "function without return type annotation returns double. This may prevent proper compilation to Cpp.",
                         "functionName": "gaugeValue",
                         "line": 22
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 5,
-                        "durationMicroseconds": 13,
+                        "durationMicroseconds": 9,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "getRpmColor",
                         "line": 26
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 26,
-                        "durationMicroseconds": 192,
+                        "durationMicroseconds": 135,
                         "errorMessage": "",
                         "functionName": "type",
                         "line": 13
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 27,
-                        "durationMicroseconds": 116,
+                        "durationMicroseconds": 73,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 37
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 26,
-                        "durationMicroseconds": 22014,
+                        "durationMicroseconds": 18101,
                         "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
                         "functionName": "onPaint",
                         "line": 49
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 31,
-                        "durationMicroseconds": 206,
+                        "durationMicroseconds": 75,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 47
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 26,
-                        "durationMicroseconds": 5049,
+                        "durationMicroseconds": 2944,
                         "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
                         "functionName": "onPaint",
                         "line": 108
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 31,
-                        "durationMicroseconds": 113,
+                        "durationMicroseconds": 87,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 106
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 23,
-                        "durationMicroseconds": 314,
+                        "durationMicroseconds": 869,
                         "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
                         "functionName": "text",
                         "line": 143
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 24,
-                        "durationMicroseconds": 471,
+                        "durationMicroseconds": 448,
                         "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
                         "functionName": "color",
                         "line": 144
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 29,
-                        "durationMicroseconds": 215,
+                        "durationMicroseconds": 325,
                         "errorMessage": "",
                         "functionName": "bottom",
                         "line": 148
@@ -102,7 +102,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 39,
-                        "durationMicroseconds": 185,
+                        "durationMicroseconds": 172,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 149
@@ -110,7 +110,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 23,
-                        "durationMicroseconds": 838,
+                        "durationMicroseconds": 683,
                         "errorMessage": "",
                         "functionName": "text",
                         "line": 156
@@ -118,7 +118,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 24,
-                        "durationMicroseconds": 473,
+                        "durationMicroseconds": 427,
                         "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
                         "functionName": "color",
                         "line": 162
@@ -126,7 +126,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 26,
-                        "durationMicroseconds": 229,
+                        "durationMicroseconds": 191,
                         "errorMessage": "",
                         "functionName": "top",
                         "line": 166
@@ -134,7 +134,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 39,
-                        "durationMicroseconds": 265,
+                        "durationMicroseconds": 152,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 167
