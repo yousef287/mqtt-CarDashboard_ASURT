@@ -260,12 +260,12 @@ Rectangle {
 
         BatteryLevelIndicator {
             id: batteryLevelIndicator
-            scaleFactor: parent.height / 210
+            scaleFactor: parent.height / 222.22
             anchors {
                 right: parent.right
                 top: parent.top
                 rightMargin: 80
-                topMargin: 60
+                topMargin: 75
             }
         }
     }
