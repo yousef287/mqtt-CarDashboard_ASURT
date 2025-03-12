@@ -83,8 +83,7 @@ Built with Qt/QML and divided into several modules:
 
 ### Cloning the Repository
 ```bash
-git clone https://github.com/yourusername/RealTimeVehicleTelemetryDashboard.git
-cd RealTimeVehicleTelemetryDashboard
+git clone https://github.com/Mohamedkhaled687/CarDashboard_ASURT.git
 ```
 
 
@@ -124,10 +123,10 @@ speed,rpm,accPedal,brakePedal,encoderAngle,temperature,batteryLevel,gpsLongitude
 - A blue line represents the vehicle’s route on the map.
 
 ## Screenshots and Demonstrations
-- **Dashboard Overview:**
-    ![Image](https://github.com/user-attachments/assets/d0cbf5e2-0fa1-41af-9597-0eb4d85698ca)
 - **Session Setup:**
     ![Image](https://github.com/user-attachments/assets/57af4040-6692-4ea8-bf3c-17cfe9a2edbb)
+- **Dashboard Overview:**
+    ![Image](https://github.com/user-attachments/assets/d0cbf5e2-0fa1-41af-9597-0eb4d85698ca)
     
 
 ## Testing
@@ -142,17 +141,13 @@ speed,rpm,accPedal,brakePedal,encoderAngle,temperature,batteryLevel,gpsLongitude
 
 ## Project Structure
 ```
-RealTimeVehicleTelemetryDashboard/
+CarDashboard/
 ├── README.md
-├── LICENSE
 ├── main.cpp
-├── RealTimeVehicleTelemetryDashboard.pro
+├── CMAKELists.txt
 ├── src/
 │   ├── udpclient.h
 │   ├── udpclient.cpp
-│   ├── udpsender.h
-│   ├── udpsender.cpp
-│   └── ... (other C++ source files)
 ├── qml/
 │   ├── main.qml
 │   ├── gps.qml
