@@ -14,8 +14,6 @@ A robust, real-time vehicle telemetry dashboard built using Qt/QML and UDP. This
 - [Testing](#testing)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
 - [Contact Information](#contact-information)
 
 ## Introduction
