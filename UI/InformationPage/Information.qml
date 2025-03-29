@@ -313,12 +313,12 @@ Rectangle {
                     yawGauge.rePaint()
                 }
                 function onPitchAngleChanged() {
-                    pitchGauge.eulerAngle = udpClient.pitchAngle
-                    pitchGauge.rePaint()
+                    pitchgauge.eulerAngle = udpClient.pitchAngle
+                    pitchgauge.rePaint()
                 }
                 function onRollAngleChanged() {
-                    rollGauge.eulerAngle = udpClient.rollAngle
-                    rollGauge.rePaint()
+                    rollgauge.eulerAngle = udpClient.rollAngle
+                    rollgauge.rePaint()
                 }
             }
 

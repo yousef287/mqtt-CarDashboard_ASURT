@@ -102,12 +102,10 @@ private:
     int m_batteryLevel;
     double m_gpsLongitude;
     double m_gpsLatitude;
-    // New private members for wheel speeds as integers
     int m_speedFL;
     int m_speedFR;
     int m_speedBL;
     int m_speedBR;
-    // Private members for Euler angles
     double m_yawAngle;
     double m_pitchAngle;
     double m_rollAngle;
