@@ -2,6 +2,7 @@
 #define UDPCLIENT_H
 #include <QObject>
 #include <QUdpSocket>
+
 class UdpClient : public QObject
 {
     Q_OBJECT
@@ -18,6 +19,11 @@ class UdpClient : public QObject
     Q_PROPERTY(int speedFR READ speedFR WRITE setSpeedFR NOTIFY speedFRChanged)
     Q_PROPERTY(int speedBL READ speedBL WRITE setSpeedBL NOTIFY speedBLChanged)
     Q_PROPERTY(int speedBR READ speedBR WRITE setSpeedBR NOTIFY speedBRChanged)
+    // Added properties for Euler angles
+    Q_PROPERTY(double yawAngle READ yawAngle WRITE setYawAngle NOTIFY yawAngleChanged)
+    Q_PROPERTY(double pitchAngle READ pitchAngle WRITE setPitchAngle NOTIFY pitchAngleChanged)
+    Q_PROPERTY(double rollAngle READ rollAngle WRITE setRollAngle NOTIFY rollAngleChanged)
+
 public:
     explicit UdpClient(QObject *parent = nullptr);
     // Bind UDP socket to the specified port.
@@ -52,6 +58,15 @@ public:
     void setSpeedBL(int newSpeedBL);
     int speedBR() const;
     void setSpeedBR(int newSpeedBR);
+
+    // Getters and setters for Euler angles
+    double yawAngle() const;
+    void setYawAngle(double newYawAngle);
+    double pitchAngle() const;
+    void setPitchAngle(double newPitchAngle);
+    double rollAngle() const;
+    void setRollAngle(double newRollAngle);
+
 signals:
     void speedChanged(float newSpeed);
     void rpmChanged(int newRpm);
@@ -68,8 +83,14 @@ signals:
     void speedFRChanged(int newSpeedFR);
     void speedBLChanged(int newSpeedBL);
     void speedBRChanged(int newSpeedBR);
+    // Signals for Euler angles
+    void yawAngleChanged(double newYawAngle);
+    void pitchAngleChanged(double newPitchAngle);
+    void rollAngleChanged(double newRollAngle);
+
 private slots:
     void processPendingDatagrams();
+
 private:
     QUdpSocket *m_socket;
     float m_speed;
@@ -86,5 +107,10 @@ private:
     int m_speedFR;
     int m_speedBL;
     int m_speedBR;
+    // Private members for Euler angles
+    double m_yawAngle;
+    double m_pitchAngle;
+    double m_rollAngle;
 };
+
 #endif // UDPCLIENT_H

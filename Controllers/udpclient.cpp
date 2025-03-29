@@ -17,7 +17,10 @@ UdpClient::UdpClient(QObject *parent)
     m_speedFL(0),
     m_speedFR(0),
     m_speedBL(0),
-    m_speedBR(0)
+    m_speedBR(0),
+    m_yawAngle(0.0),
+    m_pitchAngle(0.0),
+    m_rollAngle(0.0)
 {
     m_socket = new QUdpSocket(this);
     connect(m_socket, &QUdpSocket::readyRead, this, &UdpClient::processPendingDatagrams);
@@ -163,6 +166,36 @@ void UdpClient::setSpeedBR(int newSpeedBR)
     emit speedBRChanged(m_speedBR);
 }
 
+// Getter and Setter for yawAngle
+double UdpClient::yawAngle() const { return m_yawAngle; }
+void UdpClient::setYawAngle(double newYawAngle)
+{
+    if (qFuzzyCompare(m_yawAngle, newYawAngle))
+        return;
+    m_yawAngle = newYawAngle;
+    emit yawAngleChanged(m_yawAngle);
+}
+
+// Getter and Setter for pitchAngle
+double UdpClient::pitchAngle() const { return m_pitchAngle; }
+void UdpClient::setPitchAngle(double newPitchAngle)
+{
+    if (qFuzzyCompare(m_pitchAngle, newPitchAngle))
+        return;
+    m_pitchAngle = newPitchAngle;
+    emit pitchAngleChanged(m_pitchAngle);
+}
+
+// Getter and Setter for rollAngle
+double UdpClient::rollAngle() const { return m_rollAngle; }
+void UdpClient::setRollAngle(double newRollAngle)
+{
+    if (qFuzzyCompare(m_rollAngle, newRollAngle))
+        return;
+    m_rollAngle = newRollAngle;
+    emit rollAngleChanged(m_rollAngle);
+}
+
 void UdpClient::processPendingDatagrams()
 {
     while (m_socket->hasPendingDatagrams()) {
@@ -170,13 +203,15 @@ void UdpClient::processPendingDatagrams()
         QString data = QString::fromUtf8(datagram.data()).trimmed();
         // Expected format:
         // "speed,rpm,accPedal,brakePedal,encoderAngle,temperature,batteryLevel,
-        //  gpsLongitude,gpsLatitude,speedFL,speedFR,speedBL,speedBR"
+        //  gpsLongitude,gpsLatitude,speedFL,speedFR,speedBL,speedBR,yawAngle,pitchAngle,rollAngle"
         QStringList parts = data.split(",");
-        if (parts.size() >= 13) {
+        if (parts.size() >= 16) {
             bool okSpeed = false, okRpm = false, okAcc = false, okBrake = false;
             bool okAngle = false, okTemp = false, okBattery = false;
             bool okGpsLon = false, okGpsLat = false;
             bool okWSFL = false, okWSFR = false, okWSBL = false, okWSBR = false;
+            bool okYaw = false, okPitch = false, okRoll = false;
+
             float newSpeed = parts[0].toFloat(&okSpeed);
             int newRpm = parts[1].toInt(&okRpm);
             int newAcc = parts[2].toInt(&okAcc);
@@ -190,55 +225,57 @@ void UdpClient::processPendingDatagrams()
             int newWSFR = parts[10].toInt(&okWSFR);
             int newWSBL = parts[11].toInt(&okWSBL);
             int newWSBR = parts[12].toInt(&okWSBR);
+            double newYaw = parts[13].toDouble(&okYaw);
+            double newPitch = parts[14].toDouble(&okPitch);
+            double newRoll = parts[15].toDouble(&okRoll);
 
             if (okSpeed) {
                 setSpeed(newSpeed);
-
             }
             if (okRpm) {
                 setRpm(newRpm);
-
             }
             if (okAcc) {
                 setAccPedal(newAcc);
-
             }
             if (okBrake) {
                 setBrakePedal(newBrake);
-
             }
             if (okAngle) {
                 setEncoderAngle(newAngle);
-
             }
             if (okTemp) {
                 setTemperature(newTemp);
-
             }
             if (okBattery) {
                 setBatteryLevel(newBattery);
-
             }
             if (okGpsLon) {
                 setGpsLongitude(newGpsLon);
             }
             if (okGpsLat) {
                 setGpsLatitude(newGpsLat);
-
             }
             if (okWSFL) {
                 setSpeedFL(newWSFL);
-
             }
             if (okWSFR) {
                 setSpeedFR(newWSFR);
-
             }
             if (okWSBL) {
                 setSpeedBL(newWSBL);
             }
             if (okWSBR) {
                 setSpeedBR(newWSBR);
+            }
+            if (okYaw) {
+                setYawAngle(newYaw);
+            }
+            if (okPitch) {
+                setPitchAngle(newPitch);
+            }
+            if (okRoll) {
+                setRollAngle(newRoll);
             }
         }
     }
