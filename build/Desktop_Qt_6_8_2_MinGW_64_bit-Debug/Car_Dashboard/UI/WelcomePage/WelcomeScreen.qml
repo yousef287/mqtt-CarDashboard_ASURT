@@ -12,10 +12,15 @@ Rectangle {
     border.color: "#A6F1E0"
     border.width: 5
 
+    /**** Layout for the Two Rectangles ***/
+
     Row {
         anchors.fill : parent
         anchors.margins : 40 * root.scaleFactor
         spacing : 10
+
+
+        /**** Left Rectangle ****/
 
         Rectangle {
             id : leftRect
@@ -25,6 +30,10 @@ Rectangle {
             radius : 30
             border.width : 1.5
             border.color : "#D84040"
+
+
+            /**** Image of the Formula Student Car ****/
+
 
             Image {
                 id : carImg
@@ -41,6 +50,10 @@ Rectangle {
                 }
             }
 
+
+            /**** Formula logo ****/
+
+
             Image {
                 id : formulalogo
                 source : "../Assets/formulalogo.jpeg"
@@ -55,6 +68,9 @@ Rectangle {
                 }
             }
 
+
+            /**** Layout for the Components of this Rectangle ****/
+
             Column {
                 spacing : 8
 
@@ -63,6 +79,8 @@ Rectangle {
                     top : carImg.bottom
                     topMargin : 10
                 }
+
+                /**** Field to Get Session Name ****/
 
                 Text {
                     id : sessionInfo
@@ -109,8 +127,11 @@ Rectangle {
                         border.width : 4
                     }
 
-
                 }
+
+
+                /**** Field to Get Port Number ****/
+
 
                 Text {
                     text: "Choose Port:"
@@ -147,6 +168,10 @@ Rectangle {
                 }
             }
 
+
+            /**** Start Button ****/
+
+
             MyButton {
                 id : startButton
                 property bool inValid_Name : false
@@ -169,7 +194,8 @@ Rectangle {
                     inValid_Name = (sessionNameField.text === "")
                     inValid_Port = (portField.text === "")
 
-                    // Only navigate if both fields are valid
+                    /* Navigate to the next page if there is an valid_session name and valid port number */
+
                     if(!inValid_Name && !inValid_Port) {
                         // Convert port text to integer
                         var portNumber = parseInt(portField.text.trim())
@@ -218,6 +244,9 @@ Rectangle {
             }
         }
 
+
+        /**** Right Rectangle (Extra Information Rectangle)  ****/
+
         Rectangle {
             id : extraInfromationRect
             width : (2 * parent.width / 3) - 50
@@ -226,6 +255,9 @@ Rectangle {
             radius : 30
             border.width : 1.5
             border.color : "#D84040"
+
+
+            /**** Road Image ****/
 
             Image {
                 id : roadImg
@@ -240,6 +272,8 @@ Rectangle {
                 }
             }
 
+            /**** Car on The Road ****/
+
             Image {
                 id : roadCarImg
                 source : "../Assets/car3_white.png"
@@ -249,6 +283,9 @@ Rectangle {
                 smooth: true
                 anchors.centerIn: roadImg
             }
+
+
+            /**** Team Logo ****/
 
             Image  {
                 id : racingTeamLogo
@@ -267,6 +304,9 @@ Rectangle {
                 }
             }
 
+            /**** Layout for the Fields ****/
+
+
             Column {
                 id :col
                 anchors {
@@ -275,6 +315,8 @@ Rectangle {
                     margins : 20
                 }
                 spacing : 10
+
+                /**** Field to Get Driver Name ****/
 
                 Text {
                     id : extraText
@@ -317,6 +359,10 @@ Rectangle {
                     }
 
                 }
+
+
+                /**** Area to Write the Session Goals ****/
+
                 Text {
                     text: "Enter Session Goals:"
                     font {

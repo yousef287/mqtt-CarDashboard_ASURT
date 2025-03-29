@@ -61,13 +61,13 @@ Rectangle {
 
 
 
-        // Modified MapPolyline for better visibility
-        MapPolyline {
-            id: pathLine
-            line.width: 4
-            line.color: "blue"
-            path: gpsDisplay.pathCoordinates
-        }
+        // // Modified MapPolyline for better visibility
+        // MapPolyline {
+        //     id: pathLine
+        //     line.width: 4
+        //     line.color: "blue"
+        //     path: gpsDisplay.pathCoordinates
+        // }
 
         MapQuickItem {
             id: carMarker

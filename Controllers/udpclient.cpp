@@ -29,20 +29,22 @@ bool UdpClient::start(quint16 port)
         emit errorOccurred("Failed to bind UDP socket");
         return false;
     }
+#ifdef QT_DEBUG
     qDebug() << "UDP Client listening on port" << port;
+#endif
     return true;
 }
 
 bool UdpClient::stop()
 {
-    // Check if socket is bound and close it if needed
     if (m_socket->state() != QAbstractSocket::UnconnectedState) {
         m_socket->close();
+#ifdef QT_DEBUG
         qDebug() << "UDP Client socket closed";
+#endif
     }
     return true;
 }
-
 
 float UdpClient::speed() const { return m_speed; }
 void UdpClient::setSpeed(float newSpeed)
@@ -125,7 +127,6 @@ void UdpClient::setGpsLatitude(double newLatitude)
     emit gpsLatitudeChanged(m_gpsLatitude);
 }
 
-// New wheel speed getters and setters (as int)
 int UdpClient::speedFL() const { return m_speedFL; }
 void UdpClient::setSpeedFL(int newSpeedFL)
 {
@@ -192,55 +193,52 @@ void UdpClient::processPendingDatagrams()
 
             if (okSpeed) {
                 setSpeed(newSpeed);
-                qDebug() << "New Speed:" << newSpeed;
+
             }
             if (okRpm) {
                 setRpm(newRpm);
-                qDebug() << "New RPM:" << newRpm;
+
             }
             if (okAcc) {
                 setAccPedal(newAcc);
-                qDebug() << "New Accelerator Pedal:" << newAcc;
+
             }
             if (okBrake) {
                 setBrakePedal(newBrake);
-                qDebug() << "New Brake Pedal:" << newBrake;
+
             }
             if (okAngle) {
                 setEncoderAngle(newAngle);
-                qDebug() << "New Encoder Angle:" << newAngle;
+
             }
             if (okTemp) {
                 setTemperature(newTemp);
-                qDebug() << "New Temperature:" << newTemp;
+
             }
             if (okBattery) {
                 setBatteryLevel(newBattery);
-                qDebug() << "New Battery Level:" << newBattery;
+
             }
             if (okGpsLon) {
                 setGpsLongitude(newGpsLon);
-                qDebug() << "New GPS Longitude:" << newGpsLon;
             }
             if (okGpsLat) {
                 setGpsLatitude(newGpsLat);
-                qDebug() << "New GPS Latitude:" << newGpsLat;
+
             }
             if (okWSFL) {
                 setSpeedFL(newWSFL);
-                qDebug() << "New Wheel Speed FL:" << newWSFL;
+
             }
             if (okWSFR) {
                 setSpeedFR(newWSFR);
-                qDebug() << "New Wheel Speed FR:" << newWSFR;
+
             }
             if (okWSBL) {
                 setSpeedBL(newWSBL);
-                qDebug() << "New Wheel Speed BL:" << newWSBL;
             }
             if (okWSBR) {
                 setSpeedBR(newWSBR);
-                qDebug() << "New Wheel Speed BR:" << newWSBR;
             }
         }
     }

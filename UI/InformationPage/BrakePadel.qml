@@ -28,7 +28,7 @@ Rectangle {
     }
 
     Repeater {
-        model: totalBars
+        model: root.totalBars
         delegate: Rectangle {
             id: bar
             width: 5
@@ -36,7 +36,7 @@ Rectangle {
             property bool shouldBeActive: index <= Math.floor(root.smoothedPosition / (100 / root.totalBars))
             color: shouldBeActive ? "green" : "black"
             anchors.verticalCenter: parent.verticalCenter
-            x: index * (parent.width / totalBars)
+            x: index * (parent.width / root.totalBars)
             transformOrigin: Item.Center
         }
     }

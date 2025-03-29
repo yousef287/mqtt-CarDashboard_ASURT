@@ -318,7 +318,6 @@ Rectangle {
 
                 /**** Field to Get Driver Name ****/
 
-
                 Text {
                     id : extraText
                     text : "Extra Information"

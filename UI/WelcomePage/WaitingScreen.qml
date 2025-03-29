@@ -20,7 +20,7 @@ Rectangle {
     // Add Timer component for auto-navigation
     Timer {
         id: navigationTimer
-        interval: 8500  // 10 seconds
+        interval: 500  // 10 seconds
         running: true    // Start timer automatically when the page loads
         repeat: false    // Run only once
         onTriggered: {

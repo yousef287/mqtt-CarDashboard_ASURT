@@ -269,9 +269,101 @@ Rectangle {
             }
         }
     }
-
-
     /********************************************************/
+
+
+    /****** IMU *****/
+
+    Rectangle {
+        id : bottomRect
+
+        width : parent.width / 3
+        height : parent.height / 2.8
+        color: "#09122C"
+        border.color: "#D84040"
+        border.width: 2
+        radius : 30
+
+        anchors {
+            top : metersScreen.bottom
+            left : pedalTempRect.right
+            right : rightRect.left
+            bottom : parent.bottom
+            margins : 10
+        }
+
+        Rectangle {
+            id : imuRect
+            color : "#636363"
+            border.width : 2
+            border.color : "turquoise"
+            anchors{
+                fill : parent
+                centerIn : parent
+                margins : 8
+            }
+
+            radius : 20
+
+            Connections {
+                target: udpClient
+
+                function onYawAngleChanged() {
+                    yawGauge.eulerAngle = udpClient.yawAngle
+                    yawGauge.rePaint()
+                }
+                function onPitchAngleChanged() {
+                    pitchGauge.eulerAngle = udpClient.pitchAngle
+                    pitchGauge.rePaint()
+                }
+                function onRollAngleChanged() {
+                    rollGauge.eulerAngle = udpClient.rollAngle
+                    rollGauge.rePaint()
+                }
+            }
+
+            EulerGauges {
+                id : yawGauge
+                textVal: "Yaw (X)"
+                scaleFactor : parent.height / 205
+                anchors {
+                   left : parent.left
+                   top : parent.top
+                   topMargin : 8
+                   leftMargin : imuRect.height / 4.8
+                }
+
+            }
+
+            EulerGauges {
+                id : pitchgauge
+                textVal: "Pitch(Y)"
+                scaleFactor : parent.height / 205
+                anchors {
+                   right : parent.right
+                   top : parent.top
+                   topMargin : 8
+                   rightMargin : parent.height / 4.5
+                }
+
+            }
+
+            EulerGauges {
+                id : rollgauge
+                textVal: "Roll(Z)"
+                scaleFactor : parent.height / 205
+                anchors {
+                   left : parent.left
+                   top : yawGauge.bottom
+                   topMargin : parent.height / 2.8
+                   leftMargin : parent.height / 4.8
+                }
+
+            }
+        }
+
+
+    }
 
 
 
@@ -326,6 +418,9 @@ Rectangle {
 
     }
     /********************************************************/
+
+
+
 
 
 }

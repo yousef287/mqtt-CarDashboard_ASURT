@@ -110,6 +110,13 @@ namespace _qt_qml_Car_Dashboard_UI_InformationPage_BatteryLevelIndicator_qml {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
     };
 }
+namespace _qt_qml_Car_Dashboard_UI_InformationPage_EulerGauges_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
 
 }
 namespace {
@@ -139,6 +146,7 @@ Registry::Registry() {
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/Car_Dashboard/UI/InformationPage/AcceleratorPedal.qml"), &QmlCacheGeneratedCode::_qt_qml_Car_Dashboard_UI_InformationPage_AcceleratorPedal_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/Car_Dashboard/UI/InformationPage/BrakePadel.qml"), &QmlCacheGeneratedCode::_qt_qml_Car_Dashboard_UI_InformationPage_BrakePadel_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/Car_Dashboard/UI/InformationPage/BatteryLevelIndicator.qml"), &QmlCacheGeneratedCode::_qt_qml_Car_Dashboard_UI_InformationPage_BatteryLevelIndicator_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/Car_Dashboard/UI/InformationPage/EulerGauges.qml"), &QmlCacheGeneratedCode::_qt_qml_Car_Dashboard_UI_InformationPage_EulerGauges_qml::unit);
     QQmlPrivate::RegisterQmlUnitCacheHook registration;
     registration.structVersion = 0;
     registration.lookupCachedQmlUnit = &lookupCachedUnit;

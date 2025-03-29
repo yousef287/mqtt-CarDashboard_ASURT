@@ -269,9 +269,59 @@ Rectangle {
             }
         }
     }
-
-
     /********************************************************/
+
+
+    /****** IMU *****/
+
+    Rectangle {
+        id : bottomRect
+
+        width : 250
+        height : 100
+        color: "#09122C"
+        border.color: "#D84040"
+        border.width: 2
+        radius : 30
+
+        anchors {
+            top : metersScreen.bottom
+            left : pedalTempRect.right
+            right : rightRect.left
+            bottom : parent.bottom
+            margins : 10
+        }
+
+        Rectangle {
+            id : imuRect
+            color : "#636363"
+            border.width : 2
+            border.color : "turquoise"
+            anchors{
+                fill : parent
+                centerIn : parent
+                margins : 8
+            }
+
+            radius : 20
+
+
+            EulerGauges {
+                id : yawGauge
+                textVal: "Yaw (X)"
+                scaleFactor : parent.height / 100
+                anchors {
+                   left : parent.left
+                   top : parent.top
+                   topMargin : 8
+                   leftMargin : 70
+                }
+
+            }
+        }
+
+
+    }
 
 
 
@@ -326,6 +376,9 @@ Rectangle {
 
     }
     /********************************************************/
+
+
+
 
 
 }
