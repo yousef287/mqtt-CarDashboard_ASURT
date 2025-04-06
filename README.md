@@ -11,6 +11,7 @@ A robust, real-time vehicle telemetry dashboard built using Qt/QML and UDP. This
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Screenshots and Demonstrations](#screenshots-and-demonstrations)
+- [Video](#Video)
 - [Testing](#testing)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
@@ -127,8 +128,10 @@ speed,rpm,accPedal,brakePedal,encoderAngle,temperature,batteryLevel,gpsLongitude
     ![Image](https://github.com/user-attachments/assets/57af4040-6692-4ea8-bf3c-17cfe9a2edbb)
 - **Dashboard Overview:**
     ![Image](https://github.com/user-attachments/assets/d0cbf5e2-0fa1-41af-9597-0eb4d85698ca)
-    
 
+
+## Video
+https://github.com/user-attachments/assets/76593ab2-9330-4a89-a245-a9e5cc24e4df
 ## Testing
 
 ### Unit Testing
