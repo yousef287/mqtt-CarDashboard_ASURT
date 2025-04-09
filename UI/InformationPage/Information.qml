@@ -292,6 +292,34 @@ Rectangle {
             margins : 10
         }
 
+
+        Image {
+            id : ggImage
+            source : "../Assets/GG_Diagram.png"
+            anchors.fill : parent
+            anchors.margins : 8
+            rotation : -90
+            fillMode : Image.PreserveAspectFit
+            smooth : true
+
+            Image {
+                id : pointImage
+                source : "../Assets/point.png"
+                anchors.centerIn : parent
+                width : 20
+                height : 20
+                fillMode : Image.PreserveAspectFit
+                smooth : true
+                z : 2
+
+            }
+        }
+
+
+
+
+        /*
+
         Rectangle {
             id : imuRect
             color : "#636363"
@@ -360,7 +388,17 @@ Rectangle {
                 }
 
             }
+
+            EulerVisual {
+                anchors {
+                    right : parent.right
+                    top : parent.top
+                    topMargin : 200
+                }
+            }
         }
+        */
+
 
 
     }

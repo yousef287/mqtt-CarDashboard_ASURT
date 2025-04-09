@@ -277,8 +277,8 @@ Rectangle {
     Rectangle {
         id : bottomRect
 
-        width : 250
-        height : 100
+        width : parent.width / 3
+        height : parent.height / 2.8
         color: "#09122C"
         border.color: "#D84040"
         border.width: 2
@@ -291,6 +291,34 @@ Rectangle {
             bottom : parent.bottom
             margins : 10
         }
+
+
+        Image {
+            id : ggImage
+            source : "../Assets/GG_Diagram.png"
+            anchors.fill : parent
+            anchors.margins : 8
+            rotation : -90
+            fillMode : Image.PreserveAspectFit
+            smooth : true
+
+            Image {
+                id : pointImage
+                source : "../Assets/point.png"
+                anchors.centerIn : parent
+                width : 20
+                height : 20
+                fillMode : Image.PreserveAspectFit
+                smooth : true
+                z : 2
+
+            }
+        }
+
+
+
+
+        /*
 
         Rectangle {
             id : imuRect
@@ -305,20 +333,72 @@ Rectangle {
 
             radius : 20
 
+            Connections {
+                target: udpClient
+
+                function onYawAngleChanged() {
+                    yawGauge.eulerAngle = udpClient.yawAngle
+                    yawGauge.rePaint()
+                }
+                function onPitchAngleChanged() {
+                    pitchgauge.eulerAngle = udpClient.pitchAngle
+                    pitchgauge.rePaint()
+                }
+                function onRollAngleChanged() {
+                    rollgauge.eulerAngle = udpClient.rollAngle
+                    rollgauge.rePaint()
+                }
+            }
 
             EulerGauges {
                 id : yawGauge
                 textVal: "Yaw (X)"
-                scaleFactor : parent.height / 100
+                scaleFactor : parent.height / 205
                 anchors {
                    left : parent.left
                    top : parent.top
                    topMargin : 8
-                   leftMargin : 70
+                   leftMargin : imuRect.height / 4.8
                 }
 
             }
+
+            EulerGauges {
+                id : pitchgauge
+                textVal: "Pitch(Y)"
+                scaleFactor : parent.height / 205
+                anchors {
+                   right : parent.right
+                   top : parent.top
+                   topMargin : 8
+                   rightMargin : parent.height / 4.5
+                }
+
+            }
+
+            EulerGauges {
+                id : rollgauge
+                textVal: "Roll(Z)"
+                scaleFactor : parent.height / 205
+                anchors {
+                   left : parent.left
+                   top : yawGauge.bottom
+                   topMargin : parent.height / 2.8
+                   leftMargin : parent.height / 4.8
+                }
+
+            }
+
+            EulerVisual {
+                anchors {
+                    right : parent.right
+                    top : parent.top
+                    topMargin : 200
+                }
+            }
         }
+        */
+
 
 
     }
