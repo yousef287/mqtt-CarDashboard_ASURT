@@ -3,11 +3,13 @@
 #include "udpparserworker.h"
 #include <QDebug>
 #include <QThread>
+#include <QtConcurrent>
 
 UdpClient::UdpClient(QObject *parent)
     : QObject(parent),
+    m_nextParserIndex(0),
     m_parserThreadCount(QThread::idealThreadCount()),
-    m_debugMode(true),
+    m_debugMode(false),
     m_datagramsProcessed(0),
     m_datagramsDropped(0),
     m_speed(0.0f),
@@ -29,10 +31,9 @@ UdpClient::UdpClient(QObject *parent)
     m_receiverWorker->moveToThread(&m_receiverThread);
 
     // Connect signals and slots for receiver worker
-    // Use direct connections for performance-critical paths
     connect(this, &UdpClient::startReceiving, m_receiverWorker, &UdpReceiverWorker::startReceiving, Qt::QueuedConnection);
     connect(this, &UdpClient::stopReceiving, m_receiverWorker, &UdpReceiverWorker::stopReceiving, Qt::QueuedConnection);
-    connect(m_receiverWorker, &UdpReceiverWorker::datagramReceived, this, &UdpClient::datagramReceived, Qt::DirectConnection);
+    connect(m_receiverWorker, &UdpReceiverWorker::datagramReceived, this, &UdpClient::handleDatagramReceived, Qt::QueuedConnection);
     connect(m_receiverWorker, &UdpReceiverWorker::errorOccurred, this, &UdpClient::handleError, Qt::QueuedConnection);
 
     // Connect thread start/stop signals
@@ -120,6 +121,21 @@ void UdpClient::setDebugMode(bool enabled)
     }
 }
 
+void UdpClient::handleDatagramReceived(const QByteArray &data)
+{
+    // Distribute datagrams among parsers in a round-robin fashion
+    if (!m_parsers.isEmpty()) {
+        // Get the next parser
+        UdpParserWorker *parser = m_parsers[m_nextParserIndex];
+
+        // Queue the datagram for parsing
+        parser->queueDatagram(data);
+
+        // Update the next parser index
+        m_nextParserIndex = (m_nextParserIndex + 1) % m_parsers.size();
+    }
+}
+
 void UdpClient::handleParsedData(float speed, int rpm, int accPedal, int brakePedal,
                                  double encoderAngle, float temperature, int batteryLevel,
                                  double gpsLongitude, double gpsLatitude,
@@ -137,7 +153,7 @@ void UdpClient::handleParsedData(float speed, int rpm, int accPedal, int brakePe
         emit speedChanged(speed);
     }
 
-    // Update rpm if changed The use of relaxed memory ordering minimizes synchronization overhead when absolute ordering isn’t required.
+    // Update rpm if changed
     int oldRpm = m_rpm.load(std::memory_order_relaxed);
     if (oldRpm != rpm) {
         m_rpm.store(rpm, std::memory_order_relaxed);
@@ -237,22 +253,37 @@ void UdpClient::initializeParsers()
     for (int i = 0; i < m_parserThreadCount; ++i) {
         UdpParserWorker *parser = new UdpParserWorker(m_debugMode);
 
-        // Connect signals and slots
-        // Use direct connection for datagram reception to avoid queuing
-        // Use queued connection for results to ensure thread safety
-        connect(this, &UdpClient::datagramReceived, parser, &UdpParserWorker::parseDatagram, Qt::DirectConnection);
+        // Connect signals for results
         connect(parser, &UdpParserWorker::datagramParsed, this, &UdpClient::handleParsedData, Qt::QueuedConnection);
         connect(parser, &UdpParserWorker::errorOccurred, this, &UdpClient::handleError, Qt::QueuedConnection);
 
+        // Add to list
         m_parsers.append(parser);
+
+        // Start the parser in the thread pool
+        m_parserPool.start(parser);
+
+        if (m_debugMode) {
+            qDebug() << "Started parser" << i;
+        }
     }
+
+    // Reset the next parser index
+    m_nextParserIndex = 0;
 }
 
 void UdpClient::cleanupParsers()
 {
+    // Stop all parsers
+    for (UdpParserWorker *parser : m_parsers) {
+        parser->stop();
+    }
+
+    // Wait for all tasks to complete
+    m_parserPool.waitForDone();
+
     // Disconnect all signals
     for (UdpParserWorker *parser : m_parsers) {
-        disconnect(this, &UdpClient::datagramReceived, parser, &UdpParserWorker::parseDatagram);
         disconnect(parser, &UdpParserWorker::datagramParsed, this, &UdpClient::handleParsedData);
         disconnect(parser, &UdpParserWorker::errorOccurred, this, &UdpClient::handleError);
     }

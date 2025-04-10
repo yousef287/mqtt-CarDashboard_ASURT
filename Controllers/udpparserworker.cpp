@@ -6,6 +6,7 @@
 UdpParserWorker::UdpParserWorker(bool debugMode, QObject *parent)
     : QObject(parent),
     m_debugMode(debugMode),
+    m_running(true),
     m_datagramsParsed(0)
 {
     setAutoDelete(false);
@@ -13,12 +14,71 @@ UdpParserWorker::UdpParserWorker(bool debugMode, QObject *parent)
 
 UdpParserWorker::~UdpParserWorker()
 {
+    stop();
+
+    // Clear the queue
+    QMutexLocker locker(&m_queueMutex);
+    m_queue.clear();
 }
 
 void UdpParserWorker::run()
 {
-    // This method is not used in this implementation
-    // We use direct slot connections instead of the QRunnable mechanism
+    if (m_debugMode) {
+        qDebug() << "Parser worker started in thread" << QThread::currentThreadId();
+    }
+
+    QByteArray datagram;
+
+    while (m_running.load()) {
+        // Get a datagram from the queue
+        {
+            QMutexLocker locker(&m_queueMutex);
+
+            // Wait for data if queue is empty
+            while (m_queue.isEmpty() && m_running.load()) {
+                m_queueCondition.wait(&m_queueMutex, 100);
+            }
+
+            // Check if we should exit
+            if (!m_running.load()) {
+                break;
+            }
+
+            // Get the next datagram
+            if (!m_queue.isEmpty()) {
+                datagram = m_queue.dequeue();
+            } else {
+                continue;
+            }
+        }
+
+        // Parse the datagram
+        parseDatagram(datagram);
+    }
+
+    if (m_debugMode) {
+        qDebug() << "Parser worker stopped in thread" << QThread::currentThreadId();
+    }
+}
+
+void UdpParserWorker::queueDatagram(const QByteArray &data)
+{
+    QMutexLocker locker(&m_queueMutex);
+
+    // Add datagram to queue
+    m_queue.enqueue(data);
+
+    // Wake up the worker thread
+    m_queueCondition.wakeOne();
+}
+
+void UdpParserWorker::stop()
+{
+    m_running.store(false);
+
+    // Wake up the worker thread
+    QMutexLocker locker(&m_queueMutex);
+    m_queueCondition.wakeAll();
 }
 
 void UdpParserWorker::parseDatagram(const QByteArray &data)

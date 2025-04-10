@@ -2,6 +2,11 @@
 #include <QDebug>
 #include <QNetworkDatagram>
 
+
+/* Runs in a dedicated thread and listens for UDP datagrams.
+ * It emits a signal (datagramReceived) for each received datagram and tracks throughput statistics.
+ */
+
 UdpReceiverWorker::UdpReceiverWorker(QObject *parent)
     : QObject(parent),
     m_running(false),

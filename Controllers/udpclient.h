@@ -5,10 +5,10 @@
 #include <QUdpSocket>
 #include <QThread>
 #include <QThreadPool>
-#include <QMutex>
 #include <QAtomicInt>
 #include <QNetworkDatagram>
 #include <atomic>
+#include <memory>
 
 // Forward declarations
 class UdpReceiverWorker;
@@ -17,7 +17,7 @@ class UdpParserWorker;
 /**
  * @brief The UdpClient class provides a high-performance UDP client for receiving and parsing datagrams
  *
- * This class uses a simplified threading model with direct signal connections for maximum performance.
+ * This class uses a simplified threading model with proper thread pool utilization for maximum performance.
  * It maintains the same public API as the original implementation while significantly reducing complexity.
  */
 class UdpClient : public QObject
@@ -103,7 +103,6 @@ signals:
     // Internal signals for worker communication
     void startReceiving(quint16 port);
     void stopReceiving();
-    void datagramReceived(const QByteArray &data);
 
 private slots:
     void handleParsedData(float speed, int rpm, int accPedal, int brakePedal,
@@ -111,6 +110,7 @@ private slots:
                           double gpsLongitude, double gpsLatitude,
                           int speedFL, int speedFR, int speedBL, int speedBR);
     void handleError(const QString &error);
+    void handleDatagramReceived(const QByteArray &data);
 
 private:
     // Worker threads
@@ -119,6 +119,7 @@ private:
 
     QThreadPool m_parserPool;
     QList<UdpParserWorker*> m_parsers;
+    int m_nextParserIndex;
 
     // Configuration
     int m_parserThreadCount;
@@ -146,9 +147,6 @@ private:
     // Helper methods
     void initializeParsers();
     void cleanupParsers();
-    void updateProperty(float &property, float newValue, void (UdpClient::*signal)(float));
-    void updateProperty(int &property, int newValue, void (UdpClient::*signal)(int));
-    void updateProperty(double &property, double newValue, void (UdpClient::*signal)(double));
 };
 
 #endif // UDPCLIENT_H

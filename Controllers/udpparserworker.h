@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QRunnable>
 #include <QByteArray>
+#include <QMutex>
+#include <QQueue>
+#include <QWaitCondition>
 #include <atomic>
 
 /**
@@ -20,15 +23,23 @@ public:
     explicit UdpParserWorker(bool debugMode = false, QObject *parent = nullptr);
     ~UdpParserWorker();
 
-    // Implement QRunnable
+    /**
+     * @brief Implement QRunnable interface
+     * This method will be executed in a thread pool thread
+     */
     void run() override;
 
 public slots:
     /**
-     * @brief Parse a datagram
+     * @brief Queue a datagram for parsing
      * @param data The datagram data to parse
      */
-    void parseDatagram(const QByteArray &data);
+    void queueDatagram(const QByteArray &data);
+
+    /**
+     * @brief Stop the parser worker
+     */
+    void stop();
 
 signals:
     /**
@@ -46,8 +57,20 @@ signals:
     void errorOccurred(const QString &error);
 
 private:
+    /**
+     * @brief Parse a single datagram
+     * @param data The datagram data to parse
+     */
+    void parseDatagram(const QByteArray &data);
+
     bool m_debugMode;
+    std::atomic<bool> m_running;
     std::atomic<quint64> m_datagramsParsed;
+
+    // Thread-safe queue for datagrams
+    QQueue<QByteArray> m_queue;
+    QMutex m_queueMutex;
+    QWaitCondition m_queueCondition;
 };
 
 #endif // UDPPARSERWORKER_H
