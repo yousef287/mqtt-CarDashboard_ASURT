@@ -1,5 +1,5 @@
 import QtQuick 2.15
-import QtQuick.Controls
+import QtQuick.Shapes
 import "../StatusBar"
 
 Rectangle {
@@ -8,9 +8,13 @@ Rectangle {
     property real scaleFactor : 1.0
     property string sessionName: ""
     property string portNumber: ""
+    property real maxLateralG: 3.5  // Maximum lateral G-force (cornering)
+    property real maxLongitudinalG: 2.0  // Maximum longitudinal G-force (acceleration)
+    property real maxBrakingG: 3.5  // Maximum braking G-force
+    property real xDiagram: udpClient ? ((udpClient.lateralG / maxLateralG) * (ggImage.width / 2 - 20)) : 0
+    property real yDiagram: udpClient ? ((udpClient.longitudinalG / maxLongitudinalG) * (ggImage.height / 2 - 20)) : 0
 
     color: "#1A3438"
-    anchors.fill: parent
     radius: 40
     border.color: "#A6F1E0"
     border.width: 5
@@ -95,7 +99,7 @@ Rectangle {
                 id: fl
                 wheelPos: "FL"
                 scaleFactor : 1.1
-                currentSpeed: udpClient.speedFL
+                currentSpeed: udpClient ? udpClient.speedFL : 0
                 anchors {
                     top : car.top
                     left : proximityRect.left
@@ -107,7 +111,7 @@ Rectangle {
                 id: fr
                 wheelPos: "FR"
                 scaleFactor : 1.1
-                currentSpeed: udpClient.speedFR
+                currentSpeed: udpClient ? udpClient.speedFR : 0
                 anchors {
                     top : car.top
                     right : proximityRect.right
@@ -120,7 +124,7 @@ Rectangle {
                 id: bl
                 wheelPos: "BL"
                 scaleFactor : 1.1
-                currentSpeed: udpClient.speedBL
+                currentSpeed: udpClient ? udpClient.speedBL : 0
                 anchors {
                     bottom : car.bottom
                     left : proximityRect.left
@@ -133,7 +137,7 @@ Rectangle {
                 id: br
                 wheelPos: "BR"
                 scaleFactor : 1.1
-                currentSpeed: udpClient.speedBR
+                currentSpeed: udpClient ? udpClient.speedBR : 0
                 anchors {
                     bottom : car.bottom
                     right : proximityRect.right
@@ -170,7 +174,7 @@ Rectangle {
     Rectangle {
         id: metersScreen
         width: speedometer.width + rpmMeter.width - 45
-        height: 300
+        height: 335
         color: "#09122C"
         border.color: "#D84040"
         border.width: 2
@@ -187,7 +191,7 @@ Rectangle {
 
         Speedometer {
             id: speedometer
-            speed: udpClient.speed
+            speed: udpClient ? udpClient.speed : 0
             anchors {
                 left: parent.left
                 leftMargin: -20
@@ -198,7 +202,7 @@ Rectangle {
 
         RpmMeter {
             id: rpmMeter
-            rpm: udpClient.rpm
+            rpm: udpClient ? udpClient.rpm : 0
             anchors {
                 left: speedometer.right
                 right: parent.right
@@ -230,7 +234,7 @@ Rectangle {
 
         AcceleratorPedal {
             id: acceleratorPedal
-            pedalPosition: udpClient.accPedal
+            pedalPosition: udpClient ? udpClient.accPedal : 0
             anchors {
                 bottom: parent.bottom
                 left: parent.left
@@ -240,7 +244,7 @@ Rectangle {
 
         BrakePadel {
             id: brakePedal
-            pedalPosition: udpClient.brakePedal
+            pedalPosition: udpClient ? udpClient.brakePedal : 0
             anchors {
                 bottom: parent.bottom
                 left: acceleratorPedal.right
@@ -296,22 +300,121 @@ Rectangle {
         Image {
             id : ggImage
             source : "../Assets/GG_Diagram.png"
-            anchors.fill : parent
+            width : 294
+            height : 294
+            anchors.centerIn : parent
             anchors.margins : 8
             rotation : -90
             fillMode : Image.PreserveAspectFit
             smooth : true
 
-            Image {
-                id : pointImage
-                source : "../Assets/point.png"
-                anchors.centerIn : parent
-                width : 20
-                height : 20
-                fillMode : Image.PreserveAspectFit
-                smooth : true
-                z : 2
+            // Calculate center point dynamically
+            property real centerPoint: (ggImage.width - anchors.margins * 2) / 2
 
+            ListModel {
+                id: pathPoints
+                Component.onCompleted: {
+                    append({"x": ggImage.centerPoint, "y": ggImage.centerPoint}) // Dynamic center point
+                }
+            }
+
+            Shape {
+                id: pathShape
+                anchors.fill: parent
+                smooth: true
+                antialiasing: true
+                ShapePath {
+                    id: movementPath
+                    strokeWidth: 2
+                    strokeColor: "#A6F1E0"
+                    strokeStyle: ShapePath.SolidLine
+                    fillColor: "transparent"
+                    startX: pathPoints.get(0).x
+                    startY: pathPoints.get(0).y
+
+                    PathPolyline {
+                        path: pathPoints
+                    }
+                }
+            }
+
+            Image {
+                id: pointImage
+                source: "../Assets/point.png"
+                // Use dynamic center point for positioning
+                x: root.yDiagram + ggImage.centerPoint
+                y: root.xDiagram + ggImage.centerPoint
+                width: 20
+                height: 20
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+                z: 2
+
+                // Add smooth animations for x and y movements
+                Behavior on x {
+                    SmoothedAnimation {
+                        easing.type: Easing.InOutQuad
+                        velocity: 200
+                    }
+                }
+                Behavior on y {
+                    SmoothedAnimation {
+                        easing.type: Easing.InOutQuad
+                        velocity: 200
+                    }
+                }
+
+                Connections {
+                    target: root
+                    function onXDiagramChanged() {
+                        if (pathPoints.count > 100) {
+                            pathPoints.remove(0)
+                        }
+                        pathPoints.append({
+                            "x": root.yDiagram + ggImage.centerPoint,
+                            "y": root.xDiagram + ggImage.centerPoint
+                        })
+                    }
+                    function onYDiagramChanged() {
+                        if (pathPoints.count > 100) {
+                            pathPoints.remove(0)
+                        }
+                        pathPoints.append({
+                            "x": root.yDiagram + ggImage.centerPoint,
+                            "y": root.xDiagram + ggImage.centerPoint
+                        })
+                    }
+                }
+            }
+        }
+
+        // Add acceleration text displays
+        Row {
+            anchors {
+                top: ggImage.bottom
+                horizontalCenter: ggImage.horizontalCenter
+                topMargin: 15
+            }
+            spacing: 20
+
+            Text {
+                text: "Ax: " + root.xDiagram.toFixed(2) + " G"
+                color: "white"
+                font {
+                    family: "Arial"
+                    pixelSize: 16
+                    bold: true
+                }
+            }
+
+            Text {
+                text: "Ay: " + root.yDiagram.toFixed(2) + " G"
+                color: "white"
+                font {
+                    family: "Arial"
+                    pixelSize: 16
+                    bold: true
+                }
             }
         }
 

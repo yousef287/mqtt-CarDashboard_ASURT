@@ -48,7 +48,8 @@ signals:
     void datagramParsed(float speed, int rpm, int accPedal, int brakePedal,
                         double encoderAngle, float temperature, int batteryLevel,
                         double gpsLongitude, double gpsLatitude,
-                        int speedFL, int speedFR, int speedBL, int speedBR);
+                        int speedFL, int speedFR, int speedBL, int speedBR,
+                        double lateralG, double longitudinalG);
 
     /**
      * @brief Signal emitted when an error occurs during parsing

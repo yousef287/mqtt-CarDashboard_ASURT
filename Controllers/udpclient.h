@@ -8,7 +8,6 @@
 #include <QAtomicInt>
 #include <QNetworkDatagram>
 #include <atomic>
-#include <memory>
 
 // Forward declarations
 class UdpReceiverWorker;
@@ -36,9 +35,11 @@ class UdpClient : public QObject
     Q_PROPERTY(int speedFR READ speedFR NOTIFY speedFRChanged)
     Q_PROPERTY(int speedBL READ speedBL NOTIFY speedBLChanged)
     Q_PROPERTY(int speedBR READ speedBR NOTIFY speedBRChanged)
+    Q_PROPERTY(double lateralG READ lateralG NOTIFY lateralGChanged)
+    Q_PROPERTY(double longitudinalG READ longitudinalG NOTIFY longitudinalGChanged)
 
 public:
-    explicit UdpClient(QObject *parent = nullptr);
+    explicit UdpClient(QObject *parent = nullptr); // Initialize the Client , its threads and workers.
     ~UdpClient();
 
     /**
@@ -80,6 +81,8 @@ public:
     int speedFR() const { return m_speedFR.load(); }
     int speedBL() const { return m_speedBL.load(); }
     int speedBR() const { return m_speedBR.load(); }
+    double lateralG() const { return m_lateralG.load(); }
+    double longitudinalG() const { return m_longitudinalG.load(); }
 
 signals:
     // Property change signals
@@ -96,6 +99,8 @@ signals:
     void speedFRChanged(int newSpeedFR);
     void speedBLChanged(int newSpeedBL);
     void speedBRChanged(int newSpeedBR);
+    void lateralGChanged(double newLateralG);
+    void longitudinalGChanged(double newLongitudinalG);
 
     // Error signal
     void errorOccurred(const QString &error);
@@ -106,20 +111,23 @@ signals:
 
 private slots:
     void handleParsedData(float speed, int rpm, int accPedal, int brakePedal,
-                          double encoderAngle, float temperature, int batteryLevel,
-                          double gpsLongitude, double gpsLatitude,
-                          int speedFL, int speedFR, int speedBL, int speedBR);
-    void handleError(const QString &error);
-    void handleDatagramReceived(const QByteArray &data);
+                                     double encoderAngle, float temperature, int batteryLevel,
+                                     double gpsLongitude, double gpsLatitude,
+                                     int speedFL, int speedFR, int speedBL, int speedBR,
+                          double lateralG, double longitudinalG);
+
+    void handleError(const QString &error); // Handles error messages from workers.
+
+    void handleDatagramReceived(const QByteArray &data); // Receives raw datagrams from the receiver worker and dispatches them to parser workers.
 
 private:
     // Worker threads
-    QThread m_receiverThread;
-    UdpReceiverWorker *m_receiverWorker;
+    QThread m_receiverThread;            // Dedicated thread for the receiver worker
+    UdpReceiverWorker *m_receiverWorker; // The worker that listens to the UDP datagrams
 
-    QThreadPool m_parserPool;
-    QList<UdpParserWorker*> m_parsers;
-    int m_nextParserIndex;
+    QThreadPool m_parserPool;           // A thread pool to run multiple parsers workers concurrently
+    QList<UdpParserWorker *> m_parsers; // list of  parser worker objects
+    int m_nextParserIndex;              // Used to cycle through parser workers in a round-robin fashion, distributing incoming datagrams among multiple parsers.
 
     // Configuration
     int m_parserThreadCount;
@@ -143,6 +151,8 @@ private:
     std::atomic<int> m_speedFR;
     std::atomic<int> m_speedBL;
     std::atomic<int> m_speedBR;
+    std::atomic<double> m_lateralG;
+    std::atomic<double> m_longitudinalG;
 
     // Helper methods
     void initializeParsers();

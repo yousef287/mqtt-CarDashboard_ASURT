@@ -1,17 +1,18 @@
 #include "udpreceiverworker.h"
 #include <QDebug>
 #include <QNetworkDatagram>
+#include <QThread>
 
-
-/* Runs in a dedicated thread and listens for UDP datagrams.
- * It emits a signal (datagramReceived) for each received datagram and tracks throughput statistics.
+/*A dedicated worker class that runs in its own thread. It owns the QUdpSocket and listens for incoming datagrams.
+ *  When data is available, it processes the datagrams, updates throughput statistics,
+ *   and emits signals to pass the raw data to parser workers.
  */
 
 UdpReceiverWorker::UdpReceiverWorker(QObject *parent)
     : QObject(parent),
-    m_running(false),
-    m_datagramsReceived(0),
-    m_bytesReceived(0)
+      m_running(false),
+      m_datagramsReceived(0),
+      m_bytesReceived(0)
 {
     m_socket = new QUdpSocket(this);
 
@@ -32,13 +33,16 @@ void UdpReceiverWorker::initialize()
 
 void UdpReceiverWorker::startReceiving(quint16 port)
 {
+    qDebug() << "UdpReceiver receives on" << QThread::currentThread();
     // Close socket if it's already open
-    if (m_socket->state() != QAbstractSocket::UnconnectedState) {
+    if (m_socket->state() != QAbstractSocket::UnconnectedState)
+    {
         m_socket->close();
     }
 
     // Bind socket to the specified port
-    if (!m_socket->bind(QHostAddress::Any, port)) {
+    if (!m_socket->bind(QHostAddress::Any, port))
+    {
         emit errorOccurred(QString("Failed to bind UDP socket to port %1: %2")
                                .arg(port)
                                .arg(m_socket->errorString()));
@@ -60,7 +64,8 @@ void UdpReceiverWorker::stopReceiving()
 void UdpReceiverWorker::processPendingDatagrams()
 {
     // Process all pending datagrams
-    while (m_socket->hasPendingDatagrams() && m_running) {
+    while (m_socket->hasPendingDatagrams() && m_running)
+    {
         QNetworkDatagram datagram = m_socket->receiveDatagram();
         QByteArray data = datagram.data();
 
@@ -72,7 +77,8 @@ void UdpReceiverWorker::processPendingDatagrams()
         emit datagramReceived(data);
 
         // Log statistics every 10 seconds
-        if (m_statsTimer.elapsed() > 10000) {
+        if (m_statsTimer.elapsed() > 10000)
+        {
             qDebug() << "UDP Receiver: Received" << m_datagramsReceived
                      << "datagrams (" << m_bytesReceived << "bytes) in the last"
                      << m_statsTimer.elapsed() / 1000.0 << "seconds";
