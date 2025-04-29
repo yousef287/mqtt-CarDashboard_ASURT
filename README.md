@@ -1,11 +1,11 @@
 # Real-Time Vehicle Telemetry Dashboard
 
-A robust, real-time vehicle telemetry dashboard built using Qt/QML and UDP. This project receives and processes data from a vehicle (or simulation) including speed, RPM, GPS coordinates, wheel speeds, and other parameters, and displays them dynamically on an interactive UI.
+A high-performance, real-time vehicle telemetry dashboard built using Qt/QML and UDP. This project leverages multi-threading architecture to efficiently process and display vehicle telemetry data, ensuring smooth performance even under high data loads.
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Features](#features)
-- [Architecture](#architecture)
+- [Key Features](#key-features)
+- [Advanced Architecture](#advanced-architecture)
 - [Technologies Used](#technologies-used)
 - [Installation and Setup](#installation-and-setup)
 - [Configuration](#configuration)
@@ -18,62 +18,80 @@ A robust, real-time vehicle telemetry dashboard built using Qt/QML and UDP. This
 - [Contact Information](#contact-information)
 
 ## Introduction
-The Real-Time Vehicle Telemetry Dashboard is a desktop application designed to monitor and display various vehicle parameters in real time. Using UDP for data transmission and Qt/QML for the user interface, the application provides a modern, responsive, and visually engaging experience. The project supports:
+The Real-Time Vehicle Telemetry Dashboard is a sophisticated desktop application designed to monitor and display various vehicle parameters in real time. Built with a multi-threaded architecture, it ensures efficient data processing and smooth UI updates, making it suitable for high-frequency telemetry data. The application features:
 
-- Live transmission of vehicle telemetry data.
-- Display of real-time metrics such as speed, RPM, GPS coordinates, temperature, battery level, and individual wheel speeds.
-- A customizable dashboard that adapts to screen size and device resolution.
-- Session management and data validation for secure and reliable operation.
+- Multi-threaded data processing for optimal performance
+- Real-time UDP data transmission and processing
+- Modern, responsive Qt/QML user interface
+- Advanced visualization including GG diagrams and wheel speed indicators
+- Comprehensive session management and data validation
 
-## Features
+## Key Features
+
+### High-Performance Multi-Threading
+- **Dedicated Receiver Thread:** Handles UDP packet reception without blocking the UI
+- **Thread Pool for Data Parsing:** Multiple parser threads process incoming data concurrently
+- **Non-blocking UI Updates:** Smooth interface updates even under heavy data loads
+- **Efficient Resource Utilization:** Optimized thread management based on system capabilities
 
 ### Real-Time Data Processing
-- Receives live data via UDP and updates the dashboard in real time.
+- High-frequency data reception and processing (up to thousands of packets per second)
+- Zero-copy data handling for maximum performance
+- Thread-safe data synchronization using atomic operations
 
-### Comprehensive Telemetry
-Monitors various vehicle metrics including:
-- **Vehicle speed and RPM**
-- **Accelerator and brake pedal positions**
-- **Steering encoder angle**
-- **Temperature and battery level**
-- **IMU Parameters**
-- **GPS coordinates (longitude and latitude) with route mapping**
-- **Four individual wheel speeds (FL, FR, BL, BR)**
+### Advanced Telemetry Visualization
+- **Dynamic GG Diagram:** Real-time visualization of lateral and longitudinal G-forces
+- **Interactive Wheel Speed Display:** Individual speed monitoring for all four wheels
+- **Comprehensive Dashboard:**
+  - Vehicle speed and RPM gauges
+  - Accelerator and brake pedal positions
+  - Steering encoder angle visualization
+  - Temperature and battery level monitoring
+  - IMU parameters display
+  - GPS route tracking with real-time updates
 
-### Interactive Map
-- Uses QtLocation and QtPositioning to display the vehicle’s current location and route path.
+### Intelligent Session Management
+- Secure session initialization and configuration
+- Automatic port and connection management
+- Data validation and error handling
+- Smooth transition between session states
 
-### Responsive UI
-- Dynamic layouts that scale with window size and device resolution.
+## Advanced Architecture
 
-### Data Validation and Error Handling
-- Ensures proper input before starting sessions and provides meaningful error messages.
+### Multi-Threaded Core
+```cpp
+class UdpClient {
+    QThread m_receiverThread;            // Dedicated thread for UDP reception
+    QThreadPool m_parserPool;           // Thread pool for parallel data parsing
+    QList<UdpParserWorker *> m_parsers; // Multiple parser workers
+    // ... other components
+};
+```
 
-### Session Management
-- Supports session creation, configuration, and transition to a waiting screen.
+### Thread-Safe Data Handling
+- Atomic operations for all telemetry data updates
+- Lock-free algorithms for maximum performance
+- Smart pointer usage for memory safety
+- Event-driven communication between threads
 
-## Architecture
+### UDP Communication
+- **UdpReceiverWorker:** Dedicated worker for efficient packet reception
+- **UdpParserWorker:** Multiple workers for parallel data parsing
+- **Thread Pool Management:** Dynamic scaling based on system load
 
-### UDP Data Handling
-- **UdpClient:** Receives and parses incoming UDP datagrams, updating QML properties with telemetry data.
-- **UdpSender:** (On the server side) Sends formatted UDP datagrams containing telemetry data.
-
-### User Interface (UI)
-Built with Qt/QML and divided into several modules:
-- **Main Dashboard:** Displays overall telemetry.
-- **Map Module:** Uses QtLocation to show the GPS route and location.
-- **Wheel Speed Components:** Custom components (e.g., WheelSpeedCar) display individual wheel speeds.
-- **Session Management:** Screens for entering session details and starting sessions.
-
-### Data Validation
-- Integrated logic to ensure input fields are correctly filled and formatted.
+### User Interface Layer
+- **QML/C++ Integration:** Seamless binding between backend and frontend
+- **Custom Components:** Specialized widgets for telemetry visualization
+- **Responsive Design:** Dynamic layouts that adapt to any screen size
 
 ## Technologies Used
-- **Qt/QML:** For a cross-platform, responsive user interface.
-- **UDP Networking:** Using QUdpSocket for real-time data transmission.
-- **QtLocation & QtPositioning:** For map display and geolocation.
-- **C++:** Backend logic and UDP data processing.
-- **Git:** Version control for source code management.
+- **Qt 6+:** Modern C++ framework for cross-platform development
+- **QML:** Declarative UI design language
+- **C++17/20:** Advanced language features for robust implementation
+- **Multi-threading:** Parallel processing for optimal performance
+- **UDP Networking:** High-speed data transmission
+- **QtLocation & QtPositioning:** GPS and mapping capabilities
+- **Git:** Version control and collaboration
 
 ## Installation and Setup
 
@@ -86,8 +104,6 @@ Built with Qt/QML and divided into several modules:
 ```bash
 git clone https://github.com/Mohamedkhaled687/CarDashboard_ASURT.git
 ```
-
-
 
 ## Configuration
 
@@ -119,9 +135,9 @@ speed,rpm,accPedal,brakePedal,encoderAngle,temperature,batteryLevel,gpsLongitude
 - **Waiting Screen:** After validation, the application transitions to a waiting screen.
 
 ### Map Interaction
-- Use the zoom in/out buttons to adjust the map’s zoom level.
+- Use the zoom in/out buttons to adjust the map's zoom level.
 - The map automatically centers on the latest GPS coordinate received.
-- A blue line represents the vehicle’s route on the map.
+- A blue line represents the vehicle's route on the map.
 
 ## Screenshots and Demonstrations
 - **Session Setup:**
@@ -129,14 +145,13 @@ speed,rpm,accPedal,brakePedal,encoderAngle,temperature,batteryLevel,gpsLongitude
 - **Dashboard Overview:**
     ![Image](https://github.com/user-attachments/assets/d0cbf5e2-0fa1-41af-9597-0eb4d85698ca)
 
-
 ## Video
 https://github.com/user-attachments/assets/76593ab2-9330-4a89-a245-a9e5cc24e4df
 ## Testing
 
 ### Unit Testing
 - Unit tests are included for critical components.
-- Run tests using Qt Creator’s test framework.
+- Run tests using Qt Creator's test framework.
 
 ### Manual Testing
 - Verify UDP connectivity using a UDP packet generator.
@@ -181,10 +196,10 @@ Contributions are welcome! To contribute:
    ```
 5. Open a Pull Request.
 
-
 ## Contact Information
 For any questions, suggestions, or bug reports, please contact:
 
 - **Name:** Mohamed Khaled Ahmed
 - **Email:** mohamedkhaled47526@gmail.com
 - **GitHub:** https://github.com/Mohamedkhaled687
+- **LinkedIn:** [Your LinkedIn Profile]
