@@ -1,6 +1,6 @@
 # Real-Time Vehicle Telemetry Dashboard
 
-A high-performance, real-time vehicle telemetry dashboard built using Qt/QML and UDP. This project leverages multi-threading architecture to efficiently process and display vehicle telemetry data, ensuring smooth performance even under high data loads.
+A robust, real-time vehicle telemetry dashboard built using Qt/QML and UDP. This project receives and processes data from a vehicle (or simulation) including speed, RPM, GPS coordinates, wheel speeds, and other parameters, and displays them dynamically on an interactive UI.
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -202,4 +202,4 @@ For any questions, suggestions, or bug reports, please contact:
 - **Name:** Mohamed Khaled Ahmed
 - **Email:** mohamedkhaled47526@gmail.com
 - **GitHub:** https://github.com/Mohamedkhaled687
-- **LinkedIn:** [Your LinkedIn Profile]
+- **LinkedIn:** [https://www.linkedin.com/in/mohammedkhaaledd/]
