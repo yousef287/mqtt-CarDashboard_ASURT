@@ -278,113 +278,121 @@ Rectangle {
 
     /****** IMU *****/
 
-    Rectangle {
-        id : bottomRect
+    // Replacement for the bottomRect section only in the main QML file
 
-        width : parent.width / 3
-        height : parent.height / 2.8
+    Rectangle {
+        id: bottomRect
+
+        width: parent.width / 3
+        height: parent.height / 2.8
         color: "#09122C"
         border.color: "#D84040"
         border.width: 2
-        radius : 30
+        radius: 30
 
         anchors {
-            top : metersScreen.bottom
-            left : pedalTempRect.right
-            right : rightRect.left
-            bottom : parent.bottom
-            margins : 10
+            top: metersScreen.bottom
+            left: pedalTempRect.right
+            right: rightRect.left
+            bottom: parent.bottom
+            margins: 10
         }
 
 
+
         Image {
-            id : ggImage
-            source : "../Assets/GG_Diagram.png"
-            width : 294
-            height : 294
-            anchors.centerIn : parent
-            anchors.margins : 8
-            rotation : -90
-            fillMode : Image.PreserveAspectFit
-            smooth : true
+            id: ggImage
+            source: "../Assets/GG_Diagram.png"
+            width: 294
+            height: 294
+            anchors.centerIn: parent
+            anchors.margins: 8
+            rotation: -90
+            fillMode: Image.PreserveAspectFit
+            smooth: true
 
             // Calculate center point dynamically
-            property real centerPoint: (ggImage.width - anchors.margins * 2) / 2
+            property real centerX: width / 2
+            property real centerY: height / 2
 
-            ListModel {
-                id: pathPoints
-                Component.onCompleted: {
-                    append({"x": ggImage.centerPoint, "y": ggImage.centerPoint}) // Dynamic center point
-                }
-            }
+
 
             Shape {
                 id: pathShape
                 anchors.fill: parent
                 smooth: true
                 antialiasing: true
+
                 ShapePath {
                     id: movementPath
                     strokeWidth: 2
-                    strokeColor: "#A6F1E0"
+                    strokeColor: "white"
                     strokeStyle: ShapePath.SolidLine
                     fillColor: "transparent"
-                    startX: pathPoints.get(0).x
-                    startY: pathPoints.get(0).y
 
+                    // Start at the center point
+                    startX: ggImage.centerX
+                    startY: ggImage.centerY
+
+                    // Create path segments using a dynamic PathPolyline
                     PathPolyline {
-                        path: pathPoints
+                        id: polyline
                     }
                 }
             }
 
+            // Add the point marker
             Image {
                 id: pointImage
                 source: "../Assets/point.png"
-                // Use dynamic center point for positioning
-                x: root.yDiagram + ggImage.centerPoint
-                y: root.xDiagram + ggImage.centerPoint
                 width: 20
                 height: 20
+
+                // Position at the center of the marker with limits
+                x: Math.max(0, Math.min(ggImage.width - width, root.yDiagram + ggImage.centerX - width/2))
+                y: Math.max(0, Math.min(ggImage.height - height, root.xDiagram + ggImage.centerY - height/2))
+
                 fillMode: Image.PreserveAspectFit
                 smooth: true
                 z: 2
+
 
                 // Add smooth animations for x and y movements
                 Behavior on x {
                     SmoothedAnimation {
                         easing.type: Easing.InOutQuad
-                        velocity: 200
+                        velocity: 800
                     }
                 }
                 Behavior on y {
                     SmoothedAnimation {
                         easing.type: Easing.InOutQuad
-                        velocity: 200
+                        velocity: 800
                     }
                 }
 
-                Connections {
-                    target: root
-                    function onXDiagramChanged() {
-                        if (pathPoints.count > 100) {
-                            pathPoints.remove(0)
-                        }
-                        pathPoints.append({
-                            "x": root.yDiagram + ggImage.centerPoint,
-                            "y": root.xDiagram + ggImage.centerPoint
-                        })
-                    }
-                    function onYDiagramChanged() {
-                        if (pathPoints.count > 100) {
-                            pathPoints.remove(0)
-                        }
-                        pathPoints.append({
-                            "x": root.yDiagram + ggImage.centerPoint,
-                            "y": root.xDiagram + ggImage.centerPoint
-                        })
-                    }
-                }
+            }
+        }
+
+        // Point tracking for line drawing
+        Timer {
+            id: pathTracker
+            interval: 100  // Update every 100ms
+            running: true
+            repeat: true
+
+            property var pathPoints: []
+
+            onTriggered: {
+                // Calculate the center point of the marker with limits
+                const pointX = Math.max(0, Math.min(ggImage.width, pointImage.x + pointImage.width/2));
+                const pointY = Math.max(0, Math.min(ggImage.height, pointImage.y + pointImage.height/2));
+
+                // Add point to the path
+                pathPoints.push(Qt.point(pointX, pointY));
+
+                // Update the polyline path
+                polyline.path = pathPoints;
             }
         }
 
@@ -393,119 +401,65 @@ Rectangle {
             anchors {
                 top: ggImage.bottom
                 horizontalCenter: ggImage.horizontalCenter
-                topMargin: 15
+                topMargin: 10
             }
-            spacing: 20
+            spacing: 10
+
+            // Add clear button
+            Rectangle {
+                id: clearButton
+                width: 50
+                height: 20
+                color: "#636363"
+                radius: 15
+                border.color: "white"
+                border.width: 1
+                z: 3
+
+                Text {
+                    text: "Clear"
+                    color: "white"
+                    anchors.centerIn: parent
+                    font {
+                        family: "Arial"
+                        pixelSize: 14
+                        bold: true
+                    }
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = "#808080"
+                    onExited: parent.color = "#636363"
+                    onClicked: {
+                        pathTracker.pathPoints = []
+                        polyline.path = []
+                    }
+                }
+            }
 
             Text {
-                text: "Ax: " + root.xDiagram.toFixed(2) + " G"
+                text: "Lateral G: " + (udpClient ? udpClient.lateralG.toFixed(2) : "0.00") + " G"
                 color: "white"
                 font {
                     family: "Arial"
-                    pixelSize: 16
+                    pixelSize: 14
                     bold: true
                 }
             }
 
             Text {
-                text: "Ay: " + root.yDiagram.toFixed(2) + " G"
+                text: "Longitudinal G: " + (udpClient ? udpClient.longitudinalG.toFixed(2) : "0.00") + " G"
                 color: "white"
                 font {
                     family: "Arial"
-                    pixelSize: 16
+                    pixelSize: 14
                     bold: true
                 }
             }
         }
-
-
-
-
-        /*
-
-        Rectangle {
-            id : imuRect
-            color : "#636363"
-            border.width : 2
-            border.color : "turquoise"
-            anchors{
-                fill : parent
-                centerIn : parent
-                margins : 8
-            }
-
-            radius : 20
-
-            Connections {
-                target: udpClient
-
-                function onYawAngleChanged() {
-                    yawGauge.eulerAngle = udpClient.yawAngle
-                    yawGauge.rePaint()
-                }
-                function onPitchAngleChanged() {
-                    pitchgauge.eulerAngle = udpClient.pitchAngle
-                    pitchgauge.rePaint()
-                }
-                function onRollAngleChanged() {
-                    rollgauge.eulerAngle = udpClient.rollAngle
-                    rollgauge.rePaint()
-                }
-            }
-
-            EulerGauges {
-                id : yawGauge
-                textVal: "Yaw (X)"
-                scaleFactor : parent.height / 205
-                anchors {
-                   left : parent.left
-                   top : parent.top
-                   topMargin : 8
-                   leftMargin : imuRect.height / 4.8
-                }
-
-            }
-
-            EulerGauges {
-                id : pitchgauge
-                textVal: "Pitch(Y)"
-                scaleFactor : parent.height / 205
-                anchors {
-                   right : parent.right
-                   top : parent.top
-                   topMargin : 8
-                   rightMargin : parent.height / 4.5
-                }
-
-            }
-
-            EulerGauges {
-                id : rollgauge
-                textVal: "Roll(Z)"
-                scaleFactor : parent.height / 205
-                anchors {
-                   left : parent.left
-                   top : yawGauge.bottom
-                   topMargin : parent.height / 2.8
-                   leftMargin : parent.height / 4.8
-                }
-
-            }
-
-            EulerVisual {
-                anchors {
-                    right : parent.right
-                    top : parent.top
-                    topMargin : 200
-                }
-            }
-        }
-        */
-
-
-
     }
-
 
 
 
