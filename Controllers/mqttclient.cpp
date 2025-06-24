@@ -53,7 +53,9 @@ bool MqttClient::start()
     connect(&m_clientThread, &QThread::started, [this]() {
         if (m_debugMode)
             qDebug() << "Connecting to MQTT broker";
+
         m_client->connectToHostEncrypted(QString::fromLatin1(MQTT_HOST), MQTT_PORT);
+
     });
     connect(m_client, &QMqttClient::connected, this, &MqttClient::onConnected);
     connect(m_client, &QMqttClient::messageReceived, this, &MqttClient::handleMessage);
