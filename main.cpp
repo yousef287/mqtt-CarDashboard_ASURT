@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include<Controllers/udpclient.h>
+#include <Controllers/udpclient.h>
+#include <Controllers/mqttclient.h>
 #include <QQmlContext>
 
 int main(int argc, char *argv[])
@@ -8,9 +9,11 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    UdpClient client;
+    UdpClient udpClient;
+    MqttClient mqttClient;
 
-    engine.rootContext()->setContextProperty("udpClient", &client);
+    engine.rootContext()->setContextProperty("udpClient", &udpClient);
+    engine.rootContext()->setContextProperty("mqttClient", &mqttClient);
 
 
     QObject::connect(
