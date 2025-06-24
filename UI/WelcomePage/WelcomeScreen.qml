@@ -166,6 +166,17 @@ Rectangle {
                     }
 
                 }
+
+                Row {
+                    spacing: 10
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    ComboBox {
+                        id: protocolCombo
+                        model: ["UDP", "MQTT"]
+                        width: 100
+                    }
+                    Text { text: "Protocol"; color: "white"; verticalAlignment: Text.AlignVCenter }
+                }
             }
 
 
@@ -191,36 +202,35 @@ Rectangle {
                 }
 
                 onClicked : {
+                    var useMqtt = protocolCombo.currentIndex === 1
                     inValid_Name = (sessionNameField.text === "")
-                    inValid_Port = (portField.text === "")
+                    inValid_Port = (!useMqtt && portField.text === "")
 
-                    /* Navigate to the next page if there is an valid_session name and valid port number */
-
-                    if(!inValid_Name && !inValid_Port) {
-                        // Convert port text to integer
+                    if(!inValid_Name && (useMqtt || !inValid_Port)) {
                         var portNumber = parseInt(portField.text.trim())
 
-                        // Validate port number (valid ports are 1-65535)
-                        if (isNaN(portNumber) || portNumber < 1 || portNumber > 65535) {
-                            // Show error for invalid port
-                            inValid_Port = true
-                            return
-                        }
-
-                        // Start the UDP client with the entered port
-                        var success = udpClient.start(portNumber)
-
-                        if (success) {
-                            console.log("UDP client started successfully on port: " + portNumber)
-                            // Pass session name and port when navigating to waiting screen
-                            stackView.push("WaitingScreen.qml", {
-                                "sessionName": sessionNameField.text,
-                                "portNumber": portField.text
-                            })
+                        if(!useMqtt) {
+                            if (isNaN(portNumber) || portNumber < 1 || portNumber > 65535) {
+                                inValid_Port = true
+                                return
+                            }
+                            var success = udpClient.start(portNumber)
+                            if (success) {
+                                stackView.push("WaitingScreen.qml", {
+                                    "sessionName": sessionNameField.text,
+                                    "portNumber": portField.text,
+                                    "client": udpClient
+                                })
+                            }
                         } else {
-                            console.error("Failed to start UDP client on port: " + portNumber)
-                            // Optionally show an error message
-                            inValid_Port = true // Mark as invalid to show error state
+                            var ok = mqttClient.start()
+                            if (ok) {
+                                stackView.push("WaitingScreen.qml", {
+                                    "sessionName": sessionNameField.text,
+                                    "portNumber": "",
+                                    "client": mqttClient
+                                })
+                            }
                         }
                     }
                 }

@@ -4,7 +4,7 @@ project(Car_Dashboard VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick Network)
+find_package(Qt6 REQUIRED COMPONENTS Quick Network Mqtt)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -25,6 +25,7 @@ qt_add_qml_module(appCar_Dashboard
         RESOURCES UI/Assets/powerButton.png
         QML_FILES UI/WelcomePage/WaitingScreen.qml
         SOURCES Controllers/udpclient.h Controllers/udpclient.cpp
+        SOURCES Controllers/mqttclient.h Controllers/mqttclient.cpp
         RESOURCES UI/Assets/formulalogo.jpeg
         RESOURCES UI/Assets/car3_white.png UI/Assets/road2.png
         QML_FILES UI/StatusBar/StatusBar.qml
@@ -62,7 +63,7 @@ set_target_properties(appCar_Dashboard PROPERTIES
 )
 
 target_link_libraries(appCar_Dashboard
-    PRIVATE Qt6::Quick Qt6::Network
+    PRIVATE Qt6::Quick Qt6::Network Qt6::Mqtt
 )
 
 include(GNUInstallDirs)

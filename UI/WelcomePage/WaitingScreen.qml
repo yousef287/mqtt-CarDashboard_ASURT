@@ -10,6 +10,7 @@ Rectangle {
     property real scaleFactor: 1.0
     property string sessionName: ""
     property string portNumber: ""
+    property var client: null
 
     color: "#1A3438"
     anchors.fill: parent
@@ -26,7 +27,8 @@ Rectangle {
         onTriggered: {
             stackView.push("../InformationPage/Information.qml", {
                 "sessionName": root.sessionName,
-                "portNumber": root.portNumber
+                "portNumber": root.portNumber,
+                "dataClient": root.client
             })
         }
     }
@@ -75,8 +77,9 @@ Rectangle {
         onClicked: {
             // Stop the timer
             navigationTimer.stop()
-            // Tell the UDPClient to stop before popping back
-            udpClient.stop()
+            if (root.client) {
+                root.client.stop()
+            }
             stackView.pop()
         }
     }

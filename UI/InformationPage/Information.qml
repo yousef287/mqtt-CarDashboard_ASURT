@@ -8,11 +8,12 @@ Rectangle {
     property real scaleFactor : 1.0
     property string sessionName: ""
     property string portNumber: ""
+    property var dataClient: null
     property real maxLateralG: 3.5  // Maximum lateral G-force (cornering)
     property real maxLongitudinalG: 2.0  // Maximum longitudinal G-force (acceleration)
     property real maxBrakingG: 3.5  // Maximum braking G-force
-    property real xDiagram: udpClient ? ((udpClient.lateralG / maxLateralG) * (ggImage.width / 2 - 20)) : 0
-    property real yDiagram: udpClient ? ((udpClient.longitudinalG / maxLongitudinalG) * (ggImage.height / 2 - 20)) : 0
+    property real xDiagram: dataClient ? ((dataClient.lateralG / maxLateralG) * (ggImage.width / 2 - 20)) : 0
+    property real yDiagram: dataClient ? ((dataClient.longitudinalG / maxLongitudinalG) * (ggImage.height / 2 - 20)) : 0
 
     color: "#1A3438"
     radius: 40
@@ -99,7 +100,7 @@ Rectangle {
                 id: fl
                 wheelPos: "FL"
                 scaleFactor : 1.1
-                currentSpeed: udpClient ? udpClient.speedFL : 0
+                currentSpeed: dataClient ? dataClient.speedFL : 0
                 anchors {
                     top : car.top
                     left : proximityRect.left
@@ -111,7 +112,7 @@ Rectangle {
                 id: fr
                 wheelPos: "FR"
                 scaleFactor : 1.1
-                currentSpeed: udpClient ? udpClient.speedFR : 0
+                currentSpeed: dataClient ? dataClient.speedFR : 0
                 anchors {
                     top : car.top
                     right : proximityRect.right
@@ -124,7 +125,7 @@ Rectangle {
                 id: bl
                 wheelPos: "BL"
                 scaleFactor : 1.1
-                currentSpeed: udpClient ? udpClient.speedBL : 0
+                currentSpeed: dataClient ? dataClient.speedBL : 0
                 anchors {
                     bottom : car.bottom
                     left : proximityRect.left
@@ -137,7 +138,7 @@ Rectangle {
                 id: br
                 wheelPos: "BR"
                 scaleFactor : 1.1
-                currentSpeed: udpClient ? udpClient.speedBR : 0
+                currentSpeed: dataClient ? dataClient.speedBR : 0
                 anchors {
                     bottom : car.bottom
                     right : proximityRect.right
@@ -147,18 +148,18 @@ Rectangle {
             }
 
             Connections {
-                  target: udpClient
+                  target: dataClient
                   function onSpeedFRChanged() {
-                      fr.currentSpeed = udpClient.speedFR;
+                      fr.currentSpeed = dataClient.speedFR;
                   }
                   function onSpeedFLChanged() {
-                      fl.currentSpeed = udpClient.speedFL;
+                      fl.currentSpeed = dataClient.speedFL;
                   }
                   function onSpeedBRChanged() {
-                      br.currentSpeed = udpClient.speedBR;
+                      br.currentSpeed = dataClient.speedBR;
                   }
                   function onSpeedBLChanged() {
-                      bl.currentSpeed = udpClient.speedBL;
+                      bl.currentSpeed = dataClient.speedBL;
                   }
             }
         }
@@ -191,7 +192,7 @@ Rectangle {
 
         Speedometer {
             id: speedometer
-            speed: udpClient ? udpClient.speed : 0
+            speed: dataClient ? dataClient.speed : 0
             anchors {
                 left: parent.left
                 leftMargin: -20
@@ -202,7 +203,7 @@ Rectangle {
 
         RpmMeter {
             id: rpmMeter
-            rpm: udpClient ? udpClient.rpm : 0
+            rpm: dataClient ? dataClient.rpm : 0
             anchors {
                 left: speedometer.right
                 right: parent.right
@@ -234,7 +235,7 @@ Rectangle {
 
         AcceleratorPedal {
             id: acceleratorPedal
-            pedalPosition: udpClient ? udpClient.accPedal : 0
+            pedalPosition: dataClient ? dataClient.accPedal : 0
             anchors {
                 bottom: parent.bottom
                 left: parent.left
@@ -244,7 +245,7 @@ Rectangle {
 
         BrakePadel {
             id: brakePedal
-            pedalPosition: udpClient ? udpClient.brakePedal : 0
+            pedalPosition: dataClient ? dataClient.brakePedal : 0
             anchors {
                 bottom: parent.bottom
                 left: acceleratorPedal.right
@@ -440,7 +441,7 @@ Rectangle {
             }
 
             Text {
-                text: "Lateral G: " + (udpClient ? udpClient.lateralG.toFixed(2) : "0.00") + " G"
+                text: "Lateral G: " + (dataClient ? dataClient.lateralG.toFixed(2) : "0.00") + " G"
                 color: "white"
                 font {
                     family: "Arial"
@@ -450,7 +451,7 @@ Rectangle {
             }
 
             Text {
-                text: "Longitudinal G: " + (udpClient ? udpClient.longitudinalG.toFixed(2) : "0.00") + " G"
+                text: "Longitudinal G: " + (dataClient ? dataClient.longitudinalG.toFixed(2) : "0.00") + " G"
                 color: "white"
                 font {
                     family: "Arial"
